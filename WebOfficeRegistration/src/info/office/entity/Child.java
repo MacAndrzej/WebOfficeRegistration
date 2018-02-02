@@ -1,4 +1,4 @@
-package info.office.domain;
+package info.office.entity;
 
 import java.util.Date;
 

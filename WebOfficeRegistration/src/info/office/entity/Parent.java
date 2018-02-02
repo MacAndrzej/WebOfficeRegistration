@@ -1,4 +1,4 @@
-package info.office.domain;
+package info.office.entity;
 
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -39,17 +39,17 @@ public class Parent {
 	@Column(name="email")
 	private String email; 
 
-	@NotNull()
-	@Column(name="alert")
-	private boolean alert;
-
-	public boolean isAlert() {
-		return alert;
-	}
-
-	public void setAlert(boolean alert) {
-		this.alert = alert;
-	}
+//	@NotNull()
+//	@Column(name="alert")
+//	private boolean alert;
+//
+//	public boolean isAlert() {
+//		return alert;
+//	}
+//
+//	public void setAlert(boolean alert) {
+//		this.alert = alert;
+//	}
 
 	public String getName() {
 		return name;
