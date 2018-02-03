@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +24,14 @@
 					<th>Numer telefonu |</th>
 					<th>Email</th>
 				</tr>
+				<c:forEach var="tempParents" items="${parents }">
+					<tr>
+						<td>${tempParents.surname }</td>
+						<td>${tempParents.name }</td>
+						<td>${tempParents.telephoneNumber }</td>
+						<td>${tempParents.email }</td>
+					</tr>
+				</c:forEach>
 
 
 			</table>

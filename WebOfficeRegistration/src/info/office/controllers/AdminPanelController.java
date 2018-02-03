@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import info.office.dao.ParentDAO;
 import info.office.entity.Parent;
+import info.office.service.ParentService;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,12 +21,12 @@ public class AdminPanelController {
 	// }
 
 	@Autowired
-	private ParentDAO parentDAO;
+	private ParentService parentService;
 
-	@RequestMapping("/forParent")
+	@GetMapping("/forParent")
 	public String listParents(Model theModel) {
 
-		List<Parent> theParents = parentDAO.getParents();
+		List<Parent> theParents = parentService.getParents();
 
 		theModel.addAttribute("parents", theParents);
 

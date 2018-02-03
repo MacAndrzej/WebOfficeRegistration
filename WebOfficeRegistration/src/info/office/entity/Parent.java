@@ -31,7 +31,7 @@ public class Parent {
 	private String name;
 
 	@NotNull(message="proszę podać numer telefonu")
-	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
+//	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
 	@Column(name="telephone_number")
 	private String telephoneNumber;
 
@@ -114,13 +114,12 @@ public class Parent {
 		this.name = name;
 		this.telephoneNumber = telephoneNumber;
 		this.email = email;
-		this.alert = alert;
 	}
 
 	@Override
 	public String toString() {
 		return "Parent [Id=" + Id + ", surname=" + surname + ", name=" + name + ", telephoneNumber=" + telephoneNumber
-				+ ", email=" + email + ", alert=" + alert + "]";
+				+ ", email=" + email +  "]";
 	}
 
 	

@@ -18,7 +18,6 @@ public class ParentDAOImpl implements ParentDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
 	public List<Parent> getParents() {
 
 		Session currentSession = sessionFactory.getCurrentSession();

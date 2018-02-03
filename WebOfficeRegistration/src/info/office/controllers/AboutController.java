@@ -1,13 +1,13 @@
 package info.office.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class AboutController {
 	
-	@RequestMapping(value="/about", method=RequestMethod.GET)
+	@GetMapping(value="/about")
 	public String About() {
 		return "aboutPage";
 	}
