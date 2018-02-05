@@ -10,46 +10,55 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@Table(name="parent")
+@Table(name = "parent")
 public class Parent {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private Long Id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+
 	@NotNull
 	@Size(min = 3, message = "is required")
-	@Column(name="surname")
+	@Column(name = "surname")
 	private String surname;
 
 	@NotNull
 	@Size(min = 3, message = "is required")
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 
-	@NotNull(message="proszę podać numer telefonu")
-//	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
-	@Column(name="telephone_number")
+	
+	// @Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer
+	// telefonu")
+	@NotNull(message = "proszę podać numer telefonu")
+	@Column(name = "telephone_number")
 	private String telephoneNumber;
 
 	@Pattern(regexp = "([a-z0-9A-Z]+\\.)*([a-z0-9A-Z]+)@{1}([a-z0-9A-Z]+\\.)+([a-z0-9A-Z]+)\\.*", message = "to nie jest poprawny format adresu email")
-	@Column(name="email")
-	private String email; 
+	@Column(name = "email")
+	private String email;
 
-//	@NotNull()
-//	@Column(name="alert")
-//	private boolean alert;
-//
-//	public boolean isAlert() {
-//		return alert;
-//	}
-//
-//	public void setAlert(boolean alert) {
-//		this.alert = alert;
-//	}
+	// @NotNull()
+	// @Column(name="alert")
+	// private boolean alert;
+	//
+	// public boolean isAlert() {
+	// return alert;
+	// }
+	//
+	// public void setAlert(boolean alert) {
+	// this.alert = alert;
+	// }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -102,12 +111,10 @@ public class Parent {
 		this.telephoneNumber = phone;
 		return this;
 	}
-	
+
 	public Parent() {
-		
+
 	}
-	
-	
 
 	public Parent(String surname, String name, String telephoneNumber, String email, boolean alert) {
 		this.surname = surname;
@@ -118,10 +125,8 @@ public class Parent {
 
 	@Override
 	public String toString() {
-		return "Parent [Id=" + Id + ", surname=" + surname + ", name=" + name + ", telephoneNumber=" + telephoneNumber
-				+ ", email=" + email +  "]";
+		return "Parent [Id=" + id + ", surname=" + surname + ", name=" + name + ", telephoneNumber=" + telephoneNumber
+				+ ", email=" + email + "]";
 	}
-
-	
 
 }

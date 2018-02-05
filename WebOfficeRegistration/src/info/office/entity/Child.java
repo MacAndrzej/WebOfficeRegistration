@@ -19,17 +19,17 @@ public class Child {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private Long Id;
-	
-	@NotNull
-	@Size(min=3,message="is required")
-	@Column(name="name")
-	private String name;
+	private Long id;
 	
 	@NotNull
 	@Size(min=3,message="is required")
 	@Column(name="surname")
 	private String surname;
+	
+	@NotNull
+	@Size(min=3,message="is required")
+	@Column(name="name")
+	private String name;
 	
 	@NotNull
 	@Column(name="date_of_birth")
@@ -71,7 +71,7 @@ public class Child {
 
 	@Override
 	public String toString() {
-		return "Child [Id=" + Id + ", name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth + "]";
+		return "Child [Id=" + id + ", name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth + "]";
 	}
 	
 	

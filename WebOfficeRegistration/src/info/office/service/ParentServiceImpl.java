@@ -23,4 +23,28 @@ public class ParentServiceImpl implements ParentService {
 		return parentDAO.getParents();
 	}
 
+	@Override
+	@Transactional
+	public void saveParent(Parent theParent) {
+		
+		parentDAO.saveParent(theParent);
+	}
+
+	@Override
+	@Transactional
+	public Parent getParent(long theId) {
+		
+		return parentDAO.getParent(theId);
+	}
+
+	@Override
+	@Transactional
+	public void deleteParent(long theId) {
+		
+		parentDAO.deleteParent(theId);
+		
+	}
+	
+	
+
 }

@@ -16,7 +16,7 @@ public class Visit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Long Id;
+	private Long id;
 	
 	@NotNull
 	@Column(name="surname")
@@ -44,11 +44,11 @@ public class Visit {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		id = id;
 	}
 
 	public String getSurname() {
@@ -111,7 +111,7 @@ public class Visit {
 
 	@Override
 	public String toString() {
-		return "Visit [Id=" + Id + ", surname=" + surname + ", name=" + name + ", termOfVisitPlanned="
+		return "Visit [Id=" + id + ", surname=" + surname + ", name=" + name + ", termOfVisitPlanned="
 				+ termOfVisitPlanned + ", termOfVisitCancelled=" + termOfVisitCancelled + ", termOfVisitChanged="
 				+ termOfVisitChanged + ", absence=" + absence + "]";
 	}
