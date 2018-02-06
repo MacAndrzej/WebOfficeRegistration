@@ -16,19 +16,40 @@
 		</div>
 	</div>
 
+	<input type="button" value="Dodaj dziecko"
+		onclick="window.location.href='showFormForAddChild'; return false;"
+		class="add-button" />
+
 
 	<div id="container">
 		<div id="content">
 			<table>
-				<tr>
-					<th>Nazwisko</th>
-					<th>Imię</th>
-					<th>Data urodzenia</th>
-					<th>Operacje</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>Nazwisko</th>
+						<th>Imię</th>
+						<th>Data urodzenia</th>
+						<th>Operacje</th>
+					</tr>
+				</thead>
+				<c:forEach var="tempChild" items="${children}">
+				<c:url var="updateLink" value="/admin/showFormForUpdateChild">
+				<c:param name="childId" value="${tempChild.id}"></c:param>
+				</c:url>
+					<tr>
+						<td>${tempChild.surname}</td>
+						<td>${tempChild.name}</td>
+						<td>${tempChild.dateOfBirth}</td>
+						<td><a href="${updateLink}">Popraw</a></td>
+					</tr>
+
+				</c:forEach>
 			</table>
 		</div>
-		
+
 	</div>
+
+
+
 </body>
 </html>

@@ -92,25 +92,7 @@ public class Parent {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public Parent withName(final String name) {
-		this.name = name;
-		return this;
-	}
-
-	public Parent withSurname(final String surname) {
-		this.surname = surname;
-		return this;
-	}
-
-	public Parent withEmail(final String email) {
-		this.email = email;
-		return this;
-	}
-
-	public Parent withTelephoneNumber(final String phone) {
-		this.telephoneNumber = phone;
-		return this;
-	}
+	
 
 	public Parent() {
 

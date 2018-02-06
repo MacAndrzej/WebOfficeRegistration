@@ -9,32 +9,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 
-
 @Entity
-@Table(name="child")
+@Table(name = "child")
 public class Child {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=3,message="is required")
-	@Column(name="surname")
+	@Size(min = 3, message = "is required")
+	@Column(name = "surname")
 	private String surname;
-	
+
 	@NotNull
-	@Size(min=3,message="is required")
-	@Column(name="name")
+	@Size(min = 3, message = "is required")
+	@Column(name = "name")
 	private String name;
-	
-	@NotNull
-	@Column(name="date_of_birth")
+
+	// @NotNull
+	@DateTimeFormat(pattern="dd.MM.yyyy")
+	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -60,7 +71,7 @@ public class Child {
 	}
 
 	public Child() {
-		
+
 	}
 
 	public Child(String name, String surname, Date dateOfBirth) {
@@ -73,6 +84,5 @@ public class Child {
 	public String toString() {
 		return "Child [Id=" + id + ", name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth + "]";
 	}
-	
-	
+
 }

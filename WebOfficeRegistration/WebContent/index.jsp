@@ -1,1 +1,1 @@
-<% response.sendRedirect("admin/listParents"); %>
+<% response.sendRedirect("admin/listChildren"); %>

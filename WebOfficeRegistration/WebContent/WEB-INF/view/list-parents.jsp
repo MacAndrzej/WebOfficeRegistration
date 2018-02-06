@@ -22,13 +22,15 @@
 	<div id="container">
 		<div id="content">
 			<table>
-				<tr>
-					<th>Nazwisko</th>
-					<th>Imię</th>
-					<th>Numer telefonu</th>
-					<th>Email</th>
-					<th>Operacje</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>Nazwisko</th>
+						<th>Imię</th>
+						<th>Numer telefonu</th>
+						<th>Email</th>
+						<th>Operacje</th>
+					</tr>
+				</thead>
 				<c:forEach var="tempParent" items="${parents}">
 
 					<c:url var="updateLink" value="/admin/showFormForUpdateParent">
@@ -45,7 +47,8 @@
 						<td>${tempParent.telephoneNumber }</td>
 						<td>${tempParent.email }</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
-							href="${deleteLink}" onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a></td>
+							href="${deleteLink}"
+							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a></td>
 					</tr>
 				</c:forEach>
 
