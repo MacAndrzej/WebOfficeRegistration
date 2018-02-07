@@ -12,7 +12,7 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h2>Panel administracyjny</h2>
+			<h2>Panel administracyjny /rodzice/</h2>
 		</div>
 	</div>
 	<input type="button" value="Dodaj rodzica"
@@ -48,16 +48,16 @@
 						<td>${tempParent.email }</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a></td>
+							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a>|<a href="">Dzieci</a></td>
 					</tr>
 				</c:forEach>
 
 
 			</table>
-
 		</div>
-
 	</div>
+	<a href="${pageContext.request.contextPath}/admin/listChildren">Powrót
+		do listy dzieci</a>
 
 </body>
 </html>

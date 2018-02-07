@@ -12,7 +12,7 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h2>Panel administracyjny</h2>
+			<h2>Panel administracyjny /dzieci/</h2>
 		</div>
 	</div>
 
@@ -33,14 +33,25 @@
 					</tr>
 				</thead>
 				<c:forEach var="tempChild" items="${children}">
-				<c:url var="updateLink" value="/admin/showFormForUpdateChild">
-				<c:param name="childId" value="${tempChild.id}"></c:param>
-				</c:url>
+				
+					<c:url var="updateLink" value="/admin/showFormForUpdateChild">
+						<c:param name="childId" value="${tempChild.id}"></c:param>
+					</c:url>
+					<c:url var="deleteLink" value="/admin/deleteChild">
+						<c:param name="childId" value="${tempChild.id}"></c:param>
+					</c:url>
+					<c:url var="parentForChildLink" value="/admin/showParentForChild">
+					<c:param name="childId" value="${tempChild.id}"></c:param>
+					</c:url>
+					
 					<tr>
 						<td>${tempChild.surname}</td>
 						<td>${tempChild.name}</td>
 						<td>${tempChild.dateOfBirth}</td>
-						<td><a href="${updateLink}">Popraw</a></td>
+						<td><a href="${updateLink}">Popraw</a>|<a
+							href="${deleteLink}"
+							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>|<a
+							href="${parentForChildLink}">Rodzic</a></td>
 					</tr>
 
 				</c:forEach>
@@ -48,7 +59,8 @@
 		</div>
 
 	</div>
-
+	<a href="${pageContext.request.contextPath}/admin/listParents">Powrót
+		do listy rodziców</a>
 
 
 </body>

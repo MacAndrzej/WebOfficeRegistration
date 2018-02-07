@@ -2,6 +2,7 @@ package info.office.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "child")
@@ -37,6 +40,10 @@ public class Child {
 	@DateTimeFormat(pattern="dd.MM.yyyy")
 	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
+	
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+	@JoinColumn(name="parent_id")
+	private Parent parent;
 
 	public Long getId() {
 		return id;
@@ -69,6 +76,15 @@ public class Child {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+	
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
 
 	public Child() {
 
@@ -82,7 +98,10 @@ public class Child {
 
 	@Override
 	public String toString() {
-		return "Child [Id=" + id + ", name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth + "]";
+		return "Child [id=" + id + ", surname=" + surname + ", name=" + name + ", dateOfBirth=" + dateOfBirth
+				+ ", parent=" + parent + "]";
 	}
+
+	
 
 }

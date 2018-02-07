@@ -96,14 +96,14 @@ public class AdminPanelController {
 
 		return "parent-form";
 	}
-	
+
 	@GetMapping("/showFormForUpdateChild")
 	public String updateChild(@RequestParam("childId") long theId, Model theModel) {
-	
-		Child theChild=childService.getChild(theId);
-		
+
+		Child theChild = childService.getChild(theId);
+
 		theModel.addAttribute("children", theChild);
-		
+
 		return "child-form";
 	}
 
@@ -113,6 +113,24 @@ public class AdminPanelController {
 		parentService.deleteParent(theId);
 
 		return "redirect:/admin/listParents";
+	}
+
+	@GetMapping("/deleteChild")
+	public String deleteChild(@RequestParam("childId") long theId) {
+
+		childService.deleteChild(theId);
+
+		return "redirect:/admin/listChildren";
+	}
+
+	@GetMapping("/showParentForChild")
+	public String showParentForChild(@RequestParam("childId") long theId, Model theModel) {
+
+		Child theChild = childService.getChild(theId);
+
+		theModel.addAttribute("child", theChild);
+
+		return "parent-for-child";
 	}
 
 	@InitBinder

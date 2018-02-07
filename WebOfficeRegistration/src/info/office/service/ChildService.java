@@ -11,4 +11,6 @@ public interface ChildService {
 	public void saveChild(Child theChild);
 
 	public Child getChild(long theId);
+
+	public void deleteChild(long theId);
 }

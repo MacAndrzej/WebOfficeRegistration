@@ -11,6 +11,8 @@ public interface ChildDAO {
 	public void saveChild(Child theChild);
 
 	public Child getChild(long theId);
+
+	public void deleteChild(long theId);
 	
 	
 

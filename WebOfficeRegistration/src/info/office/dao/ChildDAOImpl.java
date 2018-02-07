@@ -47,4 +47,15 @@ public class ChildDAOImpl implements ChildDAO {
 		return theChild;
 	}
 
+	@Override
+	public void deleteChild(long theId) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Child theChild = currentSession.get(Child.class, theId);
+
+		currentSession.delete(theChild);
+
+	}
+
 }

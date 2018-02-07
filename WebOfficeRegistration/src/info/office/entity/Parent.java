@@ -1,8 +1,15 @@
 package info.office.entity;
 
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -29,7 +36,6 @@ public class Parent {
 	@Column(name = "name")
 	private String name;
 
-	
 	// @Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer
 	// telefonu")
 	@NotNull(message = "proszę podać numer telefonu")
@@ -39,6 +45,10 @@ public class Parent {
 	@Pattern(regexp = "([a-z0-9A-Z]+\\.)*([a-z0-9A-Z]+)@{1}([a-z0-9A-Z]+\\.)+([a-z0-9A-Z]+)\\.*", message = "to nie jest poprawny format adresu email")
 	@Column(name = "email")
 	private String email;
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.DETACH,
+			CascadeType.MERGE, CascadeType.REFRESH })
+	private List<Child> children;
 
 	// @NotNull()
 	// @Column(name="alert")
@@ -92,10 +102,16 @@ public class Parent {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	
-
 	public Parent() {
 
+	}
+
+	public List<Child> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Child> children) {
+		this.children = children;
 	}
 
 	public Parent(String surname, String name, String telephoneNumber, String email, boolean alert) {
@@ -107,8 +123,17 @@ public class Parent {
 
 	@Override
 	public String toString() {
-		return "Parent [Id=" + id + ", surname=" + surname + ", name=" + name + ", telephoneNumber=" + telephoneNumber
+		return "Parent [id=" + id + ", surname=" + surname + ", name=" + name + ", telephoneNumber=" + telephoneNumber
 				+ ", email=" + email + "]";
+	}
+
+	public void addChild(Child tempChild) {
+		if (tempChild == null) {
+			children = new ArrayList<>();
+		}
+		children.add(tempChild);
+
+		tempChild.setParent(this);
 	}
 
 }
