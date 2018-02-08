@@ -24,6 +24,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>Lp.</th>
 						<th>Nazwisko</th>
 						<th>Imię</th>
 						<th>Numer telefonu</th>
@@ -31,7 +32,7 @@
 						<th>Operacje</th>
 					</tr>
 				</thead>
-				<c:forEach var="tempParent" items="${parents}">
+				<c:forEach var="tempParent" items="${parents}" varStatus="status">
 
 					<c:url var="updateLink" value="/admin/showFormForUpdateParent">
 						<c:param name="parentId" value="${tempParent.id}"></c:param>
@@ -39,16 +40,21 @@
 					<c:url var="deleteLink" value="/admin/deleteParent">
 						<c:param name="parentId" value="${tempParent.id}"></c:param>
 					</c:url>
+					<c:url var="childForParentLink" value="/admin/showChildForParent">
+						<c:param name="parentId" value="${tempParent.id}"></c:param>
+					</c:url>
 
 
 					<tr>
+						<td>${status.count}.</td>
 						<td>${tempParent.surname }</td>
 						<td>${tempParent.name }</td>
 						<td>${tempParent.telephoneNumber }</td>
 						<td>${tempParent.email }</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a>|<a href="">Dzieci</a></td>
+							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a>|<a
+							href="${childForParentLink}">Dzieci</a></td>
 					</tr>
 				</c:forEach>
 

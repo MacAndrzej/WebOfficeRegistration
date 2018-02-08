@@ -46,8 +46,8 @@ public class Parent {
 	@Column(name = "email")
 	private String email;
 
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.DETACH,
-			CascadeType.MERGE, CascadeType.REFRESH })
+	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.DETACH,
+			CascadeType.MERGE, CascadeType.REFRESH,CascadeType.REMOVE })
 	private List<Child> children;
 
 	// @NotNull()

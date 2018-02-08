@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.cglib.transform.impl.AddDelegateTransformer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -131,6 +132,20 @@ public class AdminPanelController {
 		theModel.addAttribute("child", theChild);
 
 		return "parent-for-child";
+	}
+
+	@GetMapping("/showChildForParent")
+	public String showChildForParent(@RequestParam("parentId") long theId, Model theModel) {
+
+		Parent theParent = parentService.getParent(theId);
+		List<Child> children=theParent.getChildren();
+//		for (Child  s: children) {
+//			System.out.println(s.toString());
+//		}
+	System.out.println(theParent.getChildren().toString());
+		theModel.addAttribute("parent", theParent);
+
+		return "child-for-parent";
 	}
 
 	@InitBinder

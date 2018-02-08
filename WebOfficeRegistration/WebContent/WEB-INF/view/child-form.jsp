@@ -41,6 +41,10 @@
 						<td><form:input path="dateOfBirth" /></td>
 					</tr>
 					<tr>
+						<td><label>Wybierz rodzica dziecka: </label></td>
+						<td><form:input path="parent" /></td>
+					</tr>
+					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Zapisz" class="save" /></td>
 					</tr>

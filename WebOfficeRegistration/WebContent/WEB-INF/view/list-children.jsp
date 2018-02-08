@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,14 +27,16 @@
 			<table>
 				<thead>
 					<tr>
+						<th>Lp.</th>
 						<th>Nazwisko</th>
 						<th>Imię</th>
 						<th>Data urodzenia</th>
 						<th>Operacje</th>
 					</tr>
 				</thead>
-				<c:forEach var="tempChild" items="${children}">
 				
+				<c:forEach var="tempChild" items="${children}" varStatus="status">
+
 					<c:url var="updateLink" value="/admin/showFormForUpdateChild">
 						<c:param name="childId" value="${tempChild.id}"></c:param>
 					</c:url>
@@ -41,13 +44,15 @@
 						<c:param name="childId" value="${tempChild.id}"></c:param>
 					</c:url>
 					<c:url var="parentForChildLink" value="/admin/showParentForChild">
-					<c:param name="childId" value="${tempChild.id}"></c:param>
+						<c:param name="childId" value="${tempChild.id}"></c:param>
 					</c:url>
-					
+
+
 					<tr>
+						<td>${status.count}.</td>
 						<td>${tempChild.surname}</td>
 						<td>${tempChild.name}</td>
-						<td>${tempChild.dateOfBirth}</td>
+						<td><fmt:formatDate value="${tempChild.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
 						<td><a href="${updateLink}">Popraw</a>|<a
 							href="${deleteLink}"
 							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>|<a
