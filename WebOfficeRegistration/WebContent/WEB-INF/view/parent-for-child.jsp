@@ -30,6 +30,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>Lp.</th>
 						<th>Nazwisko</th>
 						<th>Imię</th>
 						<th>Numer telefonu</th>
@@ -40,6 +41,7 @@
 
 
 				<tr>
+					<td>1.</td>
 					<td><c:out value="${child.getParent().getSurname() }" /></td>
 					<td><c:out value="${child.getParent().getName() }" /></td>
 					<td><c:out value="${child.getParent().getTelephoneNumber() }" /></td>

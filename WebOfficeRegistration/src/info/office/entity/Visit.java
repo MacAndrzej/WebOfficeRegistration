@@ -17,14 +17,6 @@ public class Visit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
-	
-	@NotNull
-	@Column(name="surname")
-	private String surname;
-	
-	@NotNull
-	@Column(name="name")
-	private String name;
 
 	@Column(name="term_of_visit_planned")
 	private Date termOfVisitPlanned;
@@ -38,6 +30,9 @@ public class Visit {
 	@NotNull
 	@Column(name="absence")
 	private boolean absence;
+	
+	@Column(name="child_id")
+	private long childId;
 	
 	public Visit() {
 		

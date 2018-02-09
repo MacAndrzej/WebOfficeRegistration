@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,30 +23,35 @@
 
 
 	<div id="container">
-
 		<div id="content">
-			<c:out
-				value="Rodzic: ${parent.surname} ${parent.name}, dane dziecka: " />
+			
 
 			<table>
 				<thead>
 					<tr>
 					</tr>
 					<tr>
-						<th>Nazwisko</th>
-						<th>Imię</th>
+						<th>Lp.</th>
+						<th>Nazwisko dziecka</th>
+						<th>Imię dziecka</th>
+						<th>Nazwisko rodzica/opiekuna</th>
+						<th>Imię rodzica/opiekuna</th>
 					</tr>
 				</thead>
 
-				<c:forEach var="parent" items="${theParent.getChildren() }">
+				<c:forEach var="tempChild" items="${child}" varStatus="status">
 					<tr>
-						<td>${parent.surname}</td>
-						<td>${parent.name}></td>
+						<td>${status.count}.</td>
+						<td><c:out value="${tempChild.getSurname()}" /></td>
+						<td><c:out value="${tempChild.getName()}" /></td>
+						<td><c:out value="${parent.surname}" /></td>
+						<td><c:out value="${parent.name}" /></td>
 					</tr>
 				</c:forEach>
-				
+
 
 			</table>
+
 		</div>
 	</div>
 	<a href="${pageContext.request.contextPath }/admin/listParents">Powrót

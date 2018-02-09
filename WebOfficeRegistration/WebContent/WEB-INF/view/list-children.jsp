@@ -53,9 +53,9 @@
 						<td>${tempChild.surname}</td>
 						<td>${tempChild.name}</td>
 						<td><fmt:formatDate value="${tempChild.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
-						<td><a href="${updateLink}">Popraw</a>|<a
+						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>|<a
+							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a> | <a
 							href="${parentForChildLink}">Rodzic</a></td>
 					</tr>
 

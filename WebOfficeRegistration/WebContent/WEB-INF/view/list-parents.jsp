@@ -53,7 +53,7 @@
 						<td>${tempParent.email }</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a>|<a
+							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a> | <a
 							href="${childForParentLink}">Dzieci</a></td>
 					</tr>
 				</c:forEach>
