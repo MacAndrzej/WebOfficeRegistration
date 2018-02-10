@@ -34,7 +34,7 @@
 						<th>Operacje</th>
 					</tr>
 				</thead>
-				
+
 				<c:forEach var="tempChild" items="${children}" varStatus="status">
 
 					<c:url var="updateLink" value="/admin/showFormForUpdateChild">
@@ -52,11 +52,12 @@
 						<td>${status.count}.</td>
 						<td>${tempChild.surname}</td>
 						<td>${tempChild.name}</td>
-						<td><fmt:formatDate value="${tempChild.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
+						<td><fmt:formatDate value="${tempChild.dateOfBirth}"
+								pattern="dd-MM-yyyy" /></td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a> | <a
-							href="${parentForChildLink}">Rodzic</a></td>
+							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>
+							| <a href="${parentForChildLink}">Rodzic</a></td>
 					</tr>
 
 				</c:forEach>
@@ -65,8 +66,9 @@
 
 	</div>
 	<a href="${pageContext.request.contextPath}/admin/listParents">Powrót
-		do listy rodziców</a>
-
+		do listy rodziców</a> | 
+	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
+		do listy wizyt</a>
 
 </body>
 </html>

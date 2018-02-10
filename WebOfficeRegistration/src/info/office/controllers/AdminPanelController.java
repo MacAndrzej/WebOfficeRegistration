@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import info.office.entity.Child;
 import info.office.entity.Parent;
+import info.office.entity.Visit;
 import info.office.service.ChildService;
 import info.office.service.ParentService;
+import info.office.service.VisitService;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +32,9 @@ public class AdminPanelController {
 
 	@Autowired
 	private ChildService childService;
+	
+	@Autowired
+	private VisitService visitService;
 
 	@GetMapping("/listParents")
 	public String listParents(Model theModel) {
@@ -49,6 +54,20 @@ public class AdminPanelController {
 		theModel.addAttribute("children", theChild);
 
 		return "list-children";
+	}
+	
+	@GetMapping("/listVisits")
+	public String listVisits(Model theModel) {
+		
+		List<Visit> theVisit=visitService.getVisits();
+		
+		theModel.addAttribute("visits",theVisit);
+		
+		theModel.addAttribute(theModel);
+		
+		
+		
+		return "list-visits";
 	}
 
 	@GetMapping("/showFormForAddChild")

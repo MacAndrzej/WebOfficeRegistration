@@ -1,6 +1,7 @@
 package info.office.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "child")
@@ -44,6 +46,9 @@ public class Child {
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name="parent_id")
 	private Parent parent;
+	
+	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+	private List<Visit> visit;
 
 	public Long getId() {
 		return id;
@@ -86,6 +91,14 @@ public class Child {
 		this.parent = parent;
 	}
 
+	public List<Visit> getVisit() {
+		return visit;
+	}
+
+	public void setVisit(List<Visit> visit) {
+		this.visit = visit;
+	}
+
 	public Child() {
 
 	}
@@ -99,9 +112,7 @@ public class Child {
 	@Override
 	public String toString() {
 		return "Child [id=" + id + ", surname=" + surname + ", name=" + name + ", dateOfBirth=" + dateOfBirth
-				+ ", parent=" + parent + "]";
-	}
-
-	
+				+ ", parent=" + parent + ", visit=" + visit + "]";
+	}	
 
 }

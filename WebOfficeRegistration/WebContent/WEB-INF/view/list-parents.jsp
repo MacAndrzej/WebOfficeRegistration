@@ -53,8 +53,8 @@
 						<td>${tempParent.email }</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
-							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a> | <a
-							href="${childForParentLink}">Dzieci</a></td>
+							onclick="return confirm('Czy napewno usunąć wybrane dane ?')">Usuń</a>
+							| <a href="${childForParentLink}">Dzieci</a></td>
 					</tr>
 				</c:forEach>
 
@@ -63,7 +63,9 @@
 		</div>
 	</div>
 	<a href="${pageContext.request.contextPath}/admin/listChildren">Powrót
-		do listy dzieci</a>
+		do listy dzieci</a> | 
+	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
+		do listy wizyt</a>
 
 </body>
 </html>
