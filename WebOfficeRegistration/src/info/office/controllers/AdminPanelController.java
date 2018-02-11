@@ -32,7 +32,7 @@ public class AdminPanelController {
 
 	@Autowired
 	private ChildService childService;
-	
+
 	@Autowired
 	private VisitService visitService;
 
@@ -55,18 +55,16 @@ public class AdminPanelController {
 
 		return "list-children";
 	}
-	
+
 	@GetMapping("/listVisits")
 	public String listVisits(Model theModel) {
-		
-		List<Visit> theVisit=visitService.getVisits();
-		
-		theModel.addAttribute("visits",theVisit);
-		
+
+		List<Visit> theVisit = visitService.getVisits();
+
+		theModel.addAttribute("visits", theVisit);
+
 		theModel.addAttribute(theModel);
-		
-		
-		
+
 		return "list-visits";
 	}
 
@@ -90,6 +88,16 @@ public class AdminPanelController {
 		return "parent-form";
 	}
 
+	@GetMapping("/showFormForAddVisit")
+	public String showFormForAddVisit(Model theModel) {
+
+		Visit theVisit = new Visit();
+
+		theModel.addAttribute("visit", theVisit);
+
+		return "visit-form";
+	}
+
 	@PostMapping("/saveParent")
 	public String saveParent(@ModelAttribute("parents") Parent theParent) {
 
@@ -104,6 +112,14 @@ public class AdminPanelController {
 		childService.saveChild(theChild);
 
 		return "redirect:/admin/listChildren";
+	}
+	
+	@PostMapping("/saveVisit")
+	public String saveVisit(@ModelAttribute("visit") Visit theVisit) {
+		System.out.println(theVisit.toString());
+		visitService.save(theVisit);
+		
+		return "redirect:/admin/listVisits";
 	}
 
 	@GetMapping("/showFormForUpdateParent")
@@ -156,9 +172,9 @@ public class AdminPanelController {
 	public String showChildForParent(@RequestParam("parentId") long theId, Model theModel) {
 
 		Parent theParent = parentService.getParent(theId);
-		
-		List<Child> children=theParent.getChildren();
-		
+
+		List<Child> children = theParent.getChildren();
+
 		theModel.addAttribute("parent", theParent);
 		theModel.addAttribute("child", children);
 

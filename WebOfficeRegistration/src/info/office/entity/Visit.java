@@ -24,14 +24,23 @@ public class Visit {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "term_of_visit_planned")
-	private Date termOfVisitPlanned;
+	@Column(name = "date_of_visit_planned")
+	private Date dateOfVisitPlanned;
+	
+	@Column(name = "time_of_visit_planned")
+	private Date timeOfVisitPlanned;
 
 	@Column(name = "term_of_visit_cancelled")
 	private boolean termOfVisitCancelled;
 
-	@Column(name = "term_of_visit_changed")
-	private Date termOfVisitChanged;
+	@Column(name = "date_of_visit_changed")
+	private Date dateOfVisitChanged;
+	
+	@Column(name = "time_of_visit_changed")
+	private Date timeOfVisitChanged;
+	
+	@Column(name="term_of_modification")
+	private Date termOfModification;
 
 	@NotNull
 	@Column(name = "absence")
@@ -55,12 +64,20 @@ public class Visit {
 		this.id = id;
 	}
 
-	public Date getTermOfVisitPlanned() {
-		return termOfVisitPlanned;
+	public Date getDateOfVisitPlanned() {
+		return dateOfVisitPlanned;
 	}
 
-	public void setTermOfVisitPlanned(Date termOfVisitPlanned) {
-		this.termOfVisitPlanned = termOfVisitPlanned;
+	public void setDateOfVisitPlanned(Date dateOfVisitPlanned) {
+		this.dateOfVisitPlanned = dateOfVisitPlanned;
+	}
+
+	public Date getTimeOfVisitPlanned() {
+		return timeOfVisitPlanned;
+	}
+
+	public void setTimeOfVisitPlanned(Date timeOfVisitPlanned) {
+		this.timeOfVisitPlanned = timeOfVisitPlanned;
 	}
 
 	public boolean isTermOfVisitCancelled() {
@@ -71,12 +88,20 @@ public class Visit {
 		this.termOfVisitCancelled = termOfVisitCancelled;
 	}
 
-	public Date getTermOfVisitChanged() {
-		return termOfVisitChanged;
+	public Date getDateOfVisitChanged() {
+		return dateOfVisitChanged;
 	}
 
-	public void setTermOfVisitChanged(Date termOfVisitChanged) {
-		this.termOfVisitChanged = termOfVisitChanged;
+	public void setDateOfVisitChanged(Date dateOfVisitChanged) {
+		this.dateOfVisitChanged = dateOfVisitChanged;
+	}
+
+	public Date getTimeOfVisitChanged() {
+		return timeOfVisitChanged;
+	}
+
+	public void setTimeOfVisitChanged(Date timeOfVisitChanged) {
+		this.timeOfVisitChanged = timeOfVisitChanged;
 	}
 
 	public boolean isAbsence() {
@@ -95,19 +120,34 @@ public class Visit {
 		this.child = child;
 	}
 
-	public Visit(Date termOfVisitPlanned, boolean termOfVisitCancelled, Date termOfVisitChanged, boolean absence) {
-		this.termOfVisitPlanned = termOfVisitPlanned;
+	public Date getTermOfModification() {
+		return termOfModification;
+	}
+
+	public void setTermOfModification(Date termOfModification) {
+		this.termOfModification = termOfModification;
+	}
+
+
+	public Visit(Date dateOfVisitPlanned, Date timeOfVisitPlanned, boolean termOfVisitCancelled,
+			Date dateOfVisitChanged, Date timeOfVisitChanged, Date termOfModification, @NotNull boolean absence,
+			Child child) {
+		this.dateOfVisitPlanned = dateOfVisitPlanned;
+		this.timeOfVisitPlanned = timeOfVisitPlanned;
 		this.termOfVisitCancelled = termOfVisitCancelled;
-		this.termOfVisitChanged = termOfVisitChanged;
+		this.dateOfVisitChanged = dateOfVisitChanged;
+		this.timeOfVisitChanged = timeOfVisitChanged;
+		this.termOfModification = termOfModification;
 		this.absence = absence;
+		this.child = child;
 	}
 
 	@Override
 	public String toString() {
-		return "Visit [id=" + id + ", termOfVisitPlanned=" + termOfVisitPlanned + ", termOfVisitCancelled="
-				+ termOfVisitCancelled + ", termOfVisitChanged=" + termOfVisitChanged + ", absence=" + absence
-				+ ", child=" + child + "]";
+		return "Visit [id=" + id + ", dateOfVisitPlanned=" + dateOfVisitPlanned + ", timeOfVisitPlanned="
+				+ timeOfVisitPlanned + ", termOfVisitCancelled=" + termOfVisitCancelled + ", dateOfVisitChanged="
+				+ dateOfVisitChanged + ", timeOfVisitChanged=" + timeOfVisitChanged + ", termOfModification="
+				+ termOfModification + ", absence=" + absence + ", child=" + child + "]";
 	}
-
 	
 }

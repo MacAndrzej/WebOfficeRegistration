@@ -17,6 +17,10 @@
 		</div>
 	</div>
 
+	<input type="button" value="Dodaj wizytę"
+		onclick="window.location.href='showFormForAddVisit'; return false;"
+		class="add-button" />
+
 	<div id="container">
 		<div id="content">
 			<table>
@@ -26,18 +30,26 @@
 						<th>Numer identyfikacyjny wizyty</th>
 						<th>Termin wizyty</th>
 						<th>Aktualność wizyty</th>
-						<th>Termin przeniesionej wizyty</th>
+						<th>Wizytę przeniesiono na termin</th>
+						<th>Kiedy wykonano zmianę terminu wizyty</th>
 						<th>Klient nie pojawił się i nie odwołał wizyty</th>
 					</tr>
 					<c:forEach var="tempVisit" items="${visits}" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
 							<td>${tempVisit.id }</td>
-							<td>${tempVisit.termOfVisitPlanned }</td>
+							<td><fmt:formatDate value="${tempVisit.dateOfVisitPlanned}"
+									type="both" dateStyle="short" 
+									pattern="dd.MM.yyyy" /></td>
 							<td><c:if test="${tempVisit.termOfVisitCancelled==true }">Odwołana</c:if>
 								<c:if test="${tempVisit.termOfVisitCancelled==false }">Aktualna</c:if>
 							</td>
-							<td>${tempVisit.termOfVisitChanged }</td>
+							<td><fmt:formatDate value="${tempVisit.dateOfVisitChanged }"
+									type="both" dateStyle="short" 
+									pattern="dd.MM.yyyy" /></td>
+							<td><fmt:formatDate value="${tempVisit.termOfModification}"
+									type="both" dateStyle="short" timeStyle="short"
+									pattern="dd.MM.yyyy HH:mm" /></td>
 							<td><c:if test="${tempVisit.absence=true}">Nie pojawił się</c:if>
 								<c:if test="${tempVisit.absence=false}">Odwołał</c:if></td>
 						</tr>

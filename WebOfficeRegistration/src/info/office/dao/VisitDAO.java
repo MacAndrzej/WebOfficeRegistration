@@ -8,5 +8,7 @@ public interface VisitDAO {
 
 	List<Visit> getVisits();
 
+	void save(Visit theVisit);
+
 
 }

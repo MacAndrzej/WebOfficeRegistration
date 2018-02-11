@@ -19,8 +19,16 @@ public class VisitServiceImpl implements VisitService {
 	@Transactional
 	@Override
 	public List<Visit> getVisits() {
-		
+
 		return visitDAO.getVisits();
+	}
+
+	@Transactional
+	@Override
+	public void save(Visit theVisit) {
+
+		visitDAO.save(theVisit);
+
 	}
 
 }
