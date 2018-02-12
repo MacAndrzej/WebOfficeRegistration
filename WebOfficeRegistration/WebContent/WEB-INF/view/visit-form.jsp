@@ -14,7 +14,7 @@
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/add-parent-style.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	src="${pageContext.request.contextPath }/resources/javascript/data-z-formularza-input.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -25,17 +25,15 @@
 
 	<div id="container">
 		<h3>Zapisz wizytę</h3>
-		<form:form action="saveVisit" modelAttribute="visit" method="POST">
+		<form:form action="saveVisit" modelAttribute="visits" method="POST">
 
-
+			<fmt:formatDate value="${tempVisit.dateOfVisitPlanned}"
+				dateStyle="short" pattern="dd.MM.yyyy" />
 			<table>
 				<tbody>
 					<tr>
 						<td><label>Termin wizyty: </label></td>
-						1<td><fmt:formatDate value="${tempVisit.dateOfVisitPlanned}"
-									type="both" dateStyle="short" 
-									pattern="dd.MM.yyyy" />
-						<form:input type="date" min="Date() " path="dateOfVisitPlanned" /></td>
+						<td><form:input path="dateOfVisitPlanned" /></td>
 					</tr>
 					<tr>
 						<td><label></label></td>

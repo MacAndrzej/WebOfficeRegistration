@@ -33,25 +33,31 @@
 						<th>Wizytę przeniesiono na termin</th>
 						<th>Kiedy wykonano zmianę terminu wizyty</th>
 						<th>Klient nie pojawił się i nie odwołał wizyty</th>
+						<th>Operacje</th>
 					</tr>
+
 					<c:forEach var="tempVisit" items="${visits}" varStatus="status">
+
+						<c:url var="updateLink" value="showFormForUpdateVisit">
+							<c:param name="visitId" value="${tempVisit.id }"></c:param>
+						</c:url>
+
 						<tr>
 							<td>${status.count }</td>
 							<td>${tempVisit.id }</td>
 							<td><fmt:formatDate value="${tempVisit.dateOfVisitPlanned}"
-									type="both" dateStyle="short" 
-									pattern="dd.MM.yyyy" /></td>
+									type="both" dateStyle="short" pattern="dd.MM.yyyy" /></td>
 							<td><c:if test="${tempVisit.termOfVisitCancelled==true }">Odwołana</c:if>
 								<c:if test="${tempVisit.termOfVisitCancelled==false }">Aktualna</c:if>
 							</td>
 							<td><fmt:formatDate value="${tempVisit.dateOfVisitChanged }"
-									type="both" dateStyle="short" 
-									pattern="dd.MM.yyyy" /></td>
+									type="both" dateStyle="short" pattern="dd.MM.yyyy" /></td>
 							<td><fmt:formatDate value="${tempVisit.termOfModification}"
 									type="both" dateStyle="short" timeStyle="short"
 									pattern="dd.MM.yyyy HH:mm" /></td>
 							<td><c:if test="${tempVisit.absence=true}">Nie pojawił się</c:if>
 								<c:if test="${tempVisit.absence=false}">Odwołał</c:if></td>
+							<td><a href="${updateLink}">Popraw</a></td>
 						</tr>
 
 					</c:forEach>

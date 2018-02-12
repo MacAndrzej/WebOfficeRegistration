@@ -37,4 +37,15 @@ public class VisitDAOImpl implements VisitDAO {
 		
 	}
 
+	@Override
+	public Visit getVisit(long theId) {
+	
+		Session currentSession=sessionFactory.getCurrentSession();
+		
+		Visit theVisit=currentSession.get(Visit.class,theId);
+		
+		return theVisit;
+		
+	}
+
 }

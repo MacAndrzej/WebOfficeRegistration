@@ -10,6 +10,8 @@ public interface VisitService {
 	List<Visit> getVisits();
 
 	void save(Visit theVisit);
+
+	Visit getVisit(long theId);
 	
 
 }

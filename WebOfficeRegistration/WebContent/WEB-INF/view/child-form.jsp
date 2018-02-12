@@ -34,7 +34,7 @@
 					</tr>
 					<tr>
 						<td><label>Imię:</label></td>
-						<td><form:input path="name" name="nazwisko" /></td>
+						<td><form:input path="name"/></td>
 					</tr>
 					<tr>
 						<td><label>Data urodzenia:</label></td>

@@ -31,4 +31,13 @@ public class VisitServiceImpl implements VisitService {
 
 	}
 
+	@Transactional
+	@Override
+	public Visit getVisit(long theId) {
+
+		visitDAO.getVisit(theId);
+
+		return null;
+	}
+
 }

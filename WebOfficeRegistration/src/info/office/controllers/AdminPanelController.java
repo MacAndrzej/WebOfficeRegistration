@@ -93,7 +93,7 @@ public class AdminPanelController {
 
 		Visit theVisit = new Visit();
 
-		theModel.addAttribute("visit", theVisit);
+		theModel.addAttribute("visits", theVisit);
 
 		return "visit-form";
 	}
@@ -113,12 +113,12 @@ public class AdminPanelController {
 
 		return "redirect:/admin/listChildren";
 	}
-	
+
 	@PostMapping("/saveVisit")
-	public String saveVisit(@ModelAttribute("visit") Visit theVisit) {
+	public String saveVisit(@ModelAttribute("visits") Visit theVisit) {
 		System.out.println(theVisit.toString());
 		visitService.save(theVisit);
-		
+
 		return "redirect:/admin/listVisits";
 	}
 
@@ -140,6 +140,18 @@ public class AdminPanelController {
 		theModel.addAttribute("children", theChild);
 
 		return "child-form";
+	}
+
+	@GetMapping("/showFormForUpdateVisit")
+	public String updateVisit(@RequestParam("visitId") long theId, Model theModel) {
+
+		Visit theVisit = visitService.getVisit(theId);
+
+		theModel.addAttribute("visits", theVisit);
+		System.out.println(theVisit.toString());
+
+		return "visit-form";
+
 	}
 
 	@GetMapping("/deleteParent")

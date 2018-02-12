@@ -10,5 +10,7 @@ public interface VisitDAO {
 
 	void save(Visit theVisit);
 
+	Visit getVisit(long theId);
+
 
 }
