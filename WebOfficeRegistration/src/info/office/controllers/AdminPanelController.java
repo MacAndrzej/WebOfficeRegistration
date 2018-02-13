@@ -116,7 +116,8 @@ public class AdminPanelController {
 
 	@PostMapping("/saveVisit")
 	public String saveVisit(@ModelAttribute("visits") Visit theVisit) {
-		System.out.println(theVisit.toString());
+	
+		System.out.println(theVisit.getDateOfVisitPlanned().toString());
 		visitService.save(theVisit);
 
 		return "redirect:/admin/listVisits";
@@ -148,8 +149,7 @@ public class AdminPanelController {
 		Visit theVisit = visitService.getVisit(theId);
 
 		theModel.addAttribute("visits", theVisit);
-		System.out.println(theVisit.toString());
-
+	
 		return "visit-form";
 
 	}

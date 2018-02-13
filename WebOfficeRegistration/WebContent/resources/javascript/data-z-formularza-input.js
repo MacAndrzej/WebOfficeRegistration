@@ -1,4 +1,5 @@
-var today = new Date();
+
+var today = getElementById;
 var dd = today.getDate();
 var mm = today.getMonth()+1;
 
@@ -11,4 +12,5 @@ if(mm<10){
 } 
 console.log(today);
 var today = dd+'.'+mm+'.'+yyyy;
+
 document.write(today);

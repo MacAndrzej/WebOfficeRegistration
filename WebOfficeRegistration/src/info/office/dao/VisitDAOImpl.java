@@ -21,7 +21,7 @@ public class VisitDAOImpl implements VisitDAO {
 		
 		Session currentSession=sessionFactory.getCurrentSession();
 		
-		Query<Visit> theQuery=currentSession.createQuery("FROM Visit ORDER BY dateOfVisitPlanned", Visit.class);
+		Query<Visit> theQuery=currentSession.createQuery("FROM Visit", Visit.class);
 		
 		List<Visit> visits=theQuery.getResultList();
 

@@ -1,5 +1,7 @@
 package info.office.entity;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 
@@ -25,10 +27,10 @@ public class Visit {
 	private Long id;
 
 	@Column(name = "date_of_visit_planned")
-	private Date dateOfVisitPlanned;
+	private LocalDate dateOfVisitPlanned;
 	
 	@Column(name = "time_of_visit_planned")
-	private Date timeOfVisitPlanned;
+	private LocalTime timeOfVisitPlanned;
 
 	@Column(name = "term_of_visit_cancelled")
 	private boolean termOfVisitCancelled;
@@ -64,19 +66,19 @@ public class Visit {
 		this.id = id;
 	}
 
-	public Date getDateOfVisitPlanned() {
+	public LocalDate getDateOfVisitPlanned() {
 		return dateOfVisitPlanned;
 	}
 
-	public void setDateOfVisitPlanned(Date dateOfVisitPlanned) {
+	public void setDateOfVisitPlanned(LocalDate dateOfVisitPlanned) {
 		this.dateOfVisitPlanned = dateOfVisitPlanned;
 	}
 
-	public Date getTimeOfVisitPlanned() {
+	public LocalTime getTimeOfVisitPlanned() {
 		return timeOfVisitPlanned;
 	}
 
-	public void setTimeOfVisitPlanned(Date timeOfVisitPlanned) {
+	public void setTimeOfVisitPlanned(LocalTime timeOfVisitPlanned) {
 		this.timeOfVisitPlanned = timeOfVisitPlanned;
 	}
 
@@ -129,7 +131,7 @@ public class Visit {
 	}
 
 
-	public Visit(Date dateOfVisitPlanned, Date timeOfVisitPlanned, boolean termOfVisitCancelled,
+	public Visit(LocalDate dateOfVisitPlanned, LocalTime timeOfVisitPlanned, boolean termOfVisitCancelled,
 			Date dateOfVisitChanged, Date timeOfVisitChanged, Date termOfModification, @NotNull boolean absence,
 			Child child) {
 		this.dateOfVisitPlanned = dateOfVisitPlanned;

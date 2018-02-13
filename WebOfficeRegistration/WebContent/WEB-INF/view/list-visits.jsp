@@ -38,7 +38,7 @@
 
 					<c:forEach var="tempVisit" items="${visits}" varStatus="status">
 
-						<c:url var="updateLink" value="showFormForUpdateVisit">
+						<c:url var="updateLink" value="/admin/showFormForUpdateVisit">
 							<c:param name="visitId" value="${tempVisit.id }"></c:param>
 						</c:url>
 
