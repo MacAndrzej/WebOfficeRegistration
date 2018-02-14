@@ -6,11 +6,11 @@ import info.office.entity.Visit;
 
 public interface VisitDAO {
 
-	List<Visit> getVisits();
+	public List<Visit> getVisits();
 
-	void save(Visit theVisit);
+	public void save(Visit theVisit);
 
-	Visit getVisit(long theId);
+	public Visit getVisit(long theId);
 
 
 }

@@ -21,7 +21,7 @@ public class ChildDAOImpl implements ChildDAO {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		Query<Child> theQuery = currentSession.createQuery("FROM Child ORDER BY surname", Child.class);
+		Query<Child> theQuery = currentSession.createQuery("FROM Child", Child.class);
 
 		List<Child> children = theQuery.getResultList();
 

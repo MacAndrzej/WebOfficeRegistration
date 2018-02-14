@@ -7,11 +7,11 @@ import info.office.entity.Visit;
 
 public interface VisitService {
 
-	List<Visit> getVisits();
+	public List<Visit> getVisits();
 
-	void save(Visit theVisit);
+	public void save(Visit theVisit);
 
-	Visit getVisit(long theId);
+	public Visit getVisit(long theId);
 	
 
 }

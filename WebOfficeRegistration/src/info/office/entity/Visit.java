@@ -17,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table
 public class Visit {
@@ -26,6 +28,7 @@ public class Visit {
 	@Column(name = "id")
 	private Long id;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "date_of_visit_planned")
 	private LocalDate dateOfVisitPlanned;
 	

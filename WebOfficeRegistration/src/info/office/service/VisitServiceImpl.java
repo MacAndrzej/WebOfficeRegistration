@@ -35,9 +35,7 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public Visit getVisit(long theId) {
 
-		visitDAO.getVisit(theId);
-
-		return null;
+		return visitDAO.getVisit(theId);
 	}
 
 }

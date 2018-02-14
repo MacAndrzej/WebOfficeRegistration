@@ -1,6 +1,9 @@
 package info.office.controllers;
 
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -92,8 +95,10 @@ public class AdminPanelController {
 	public String showFormForAddVisit(Model theModel) {
 
 		Visit theVisit = new Visit();
-
+		
+		
 		theModel.addAttribute("visits", theVisit);
+		theModel.addAttribute("children",theVisit.getChild());
 
 		return "visit-form";
 	}
@@ -116,8 +121,7 @@ public class AdminPanelController {
 
 	@PostMapping("/saveVisit")
 	public String saveVisit(@ModelAttribute("visits") Visit theVisit) {
-	
-		System.out.println(theVisit.getDateOfVisitPlanned().toString());
+
 		visitService.save(theVisit);
 
 		return "redirect:/admin/listVisits";
@@ -149,7 +153,7 @@ public class AdminPanelController {
 		Visit theVisit = visitService.getVisit(theId);
 
 		theModel.addAttribute("visits", theVisit);
-	
+
 		return "visit-form";
 
 	}
@@ -193,16 +197,32 @@ public class AdminPanelController {
 		return "child-for-parent";
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-		sdf.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-	}
+	//// @InitBinder
+	//// public void initBinder(WebDataBinder binder) {
+	//// SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+	//// sdf.setLenient(true);
+	//// binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+	// }
 
 	// @RequestMapping(value="/forChild", method=RequestMethod.GET)
 	// public String AdminPanelChild() {
 	// return "adminPanelChildPage";
+	// }
+
+	// @InitBinder
+	// protected void initBinder(WebDataBinder binder) {
+	// binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+	// @Override
+	// public void setAsText(String text) throws IllegalArgumentException{
+	// setValue(LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+	// }
+	//
+	// @Override
+	// public String getAsText() throws IllegalArgumentException {
+	// return DateTimeFormatter.ofPattern("yyyy-MM-dd").format((LocalDate)
+	// getValue());
+	// }
+	// });
 	// }
 
 }

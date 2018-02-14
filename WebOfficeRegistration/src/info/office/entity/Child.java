@@ -1,6 +1,7 @@
 package info.office.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,9 +40,9 @@ public class Child {
 	private String name;
 
 	// @NotNull
-	@DateTimeFormat(pattern="dd.MM.yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name="parent_id")
@@ -74,11 +75,11 @@ public class Child {
 		this.surname = surname;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
@@ -103,7 +104,7 @@ public class Child {
 
 	}
 
-	public Child(String name, String surname, Date dateOfBirth) {
+	public Child(String name, String surname, LocalDate dateOfBirth) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;

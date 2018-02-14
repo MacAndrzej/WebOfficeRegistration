@@ -52,8 +52,7 @@
 						<td>${status.count}.</td>
 						<td>${tempChild.surname}</td>
 						<td>${tempChild.name}</td>
-						<td><fmt:formatDate value="${tempChild.dateOfBirth}"  dateStyle="short"  pattern="dd.MM.yyyy"
-								 /></td>
+						<td>${tempChild.dateOfBirth}</td>
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
 							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>
@@ -66,7 +65,7 @@
 
 	</div>
 	<a href="${pageContext.request.contextPath}/admin/listParents">Powrót
-		do listy rodziców</a> | 
+		do listy rodziców</a> |
 	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
 		do listy wizyt</a>
 

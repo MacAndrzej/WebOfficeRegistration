@@ -1,5 +1,5 @@
 
-var today = getElementById;
+var today = getElementByClassName('plan').value;
 var dd = today.getDate();
 var mm = today.getMonth()+1;
 

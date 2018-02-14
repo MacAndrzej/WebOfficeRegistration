@@ -13,17 +13,21 @@
 </style>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/add-parent-style.css">
-<link type="text/css" rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css">
-<script
-	src="${pageContext.request.contextPath }/resources/javascript/data-z-formularza-input.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/jquery/jquery.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery.datetimepicker.full.js"></script>
+<!-- <link type="text/css" rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css"> --%>
+
+<!-- <script -->
+<%-- 	src="${pageContext.request.contextPath }/resources/jquery/jquery.js"></script> --%>
+<!-- <script -->
+<%-- 	src="${pageContext.request.contextPath}/resources/jquery/jquery.datetimepicker.full.js"></script> --%>
 </head>
 
 <body>
+
+
+
+
+
 	<div id="wrapper">
 		<div id="header">
 			<h2>Panel administracyjny</h2>
@@ -35,18 +39,16 @@
 		<form:form action="saveVisit" modelAttribute="visits" method="POST">
 			<form:hidden path="id" />
 
-			<fmt:formatDate value="${tempVisit.dateOfVisitPlanned}"
-				dateStyle="short" pattern="dd.MM.yyyy" />
+
 			<table>
 				<tbody>
 					<tr>
 						<td><label>Termin wizyty: </label></td>
-						<td><form:input type="date" path="dateOfVisitPlanned"
-								class="plan" /></td>
+						<td><form:input type="date" path="dateOfVisitPlanned" /></td>
 					</tr>
 					<tr>
-						<td>Picker</td>
-						<td><input  id="datetime"></td>
+						<td><label>Nazwisko dziecka: </label></td>
+						<td><form:input path="surname" /></td>
 					</tr>
 					<tr>
 						<td><label></label></td>
@@ -60,7 +62,8 @@
 
 	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
 		do listy wizyt</a>
-	<script>$("#datetime").datetimepicker({format: 'd.m.y' }); </script>
+	<!-- 	<script>$("#datetime").datetimepicker(); -->
+	<!-- 	</script> -->
 
 </body>
 </html>
