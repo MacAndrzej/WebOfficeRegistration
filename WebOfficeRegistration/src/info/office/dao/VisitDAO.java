@@ -12,5 +12,7 @@ public interface VisitDAO {
 
 	public Visit getVisit(long theId);
 
+	public void deleteVisit(long theId);
+
 
 }

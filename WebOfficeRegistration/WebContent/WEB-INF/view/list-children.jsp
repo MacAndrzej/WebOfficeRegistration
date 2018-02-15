@@ -21,6 +21,14 @@
 		onclick="window.location.href='showFormForAddChild'; return false;"
 		class="add-button" />
 
+	<input type="button" value="Lista rodziców"
+		onclick="window.location.href='listParents'; return false;"
+		class="add-button" />
+
+	<input type="button" value="Lista wizyt"
+		onclick="window.location.href='listVisits'; return false;"
+		class="add-button" />
+
 
 	<div id="container">
 		<div id="content">
@@ -64,10 +72,7 @@
 		</div>
 
 	</div>
-	<a href="${pageContext.request.contextPath}/admin/listParents">Powrót
-		do listy rodziców</a> |
-	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
-		do listy wizyt</a>
+
 
 </body>
 </html>

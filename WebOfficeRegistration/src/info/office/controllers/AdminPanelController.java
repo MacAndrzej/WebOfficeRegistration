@@ -1,19 +1,15 @@
 package info.office.controllers;
 
-import java.beans.PropertyEditorSupport;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,7 +94,7 @@ public class AdminPanelController {
 		
 		
 		theModel.addAttribute("visits", theVisit);
-		theModel.addAttribute("children",theVisit.getChild());
+	
 
 		return "visit-form";
 	}
@@ -122,6 +118,7 @@ public class AdminPanelController {
 	@PostMapping("/saveVisit")
 	public String saveVisit(@ModelAttribute("visits") Visit theVisit) {
 
+		
 		visitService.save(theVisit);
 
 		return "redirect:/admin/listVisits";
@@ -172,6 +169,14 @@ public class AdminPanelController {
 		childService.deleteChild(theId);
 
 		return "redirect:/admin/listChildren";
+	}
+	
+	@GetMapping("/deleteVisit")
+	public String deleteVisit(@RequestParam("visitId") long theId ) {
+		
+		visitService.deleteVisit(theId);
+		
+		return "redirect:/admin/listVisits";
 	}
 
 	@GetMapping("/showParentForChild")

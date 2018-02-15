@@ -12,6 +12,8 @@ public interface VisitService {
 	public void save(Visit theVisit);
 
 	public Visit getVisit(long theId);
+
+	public void deleteVisit(long theId);
 	
 
 }

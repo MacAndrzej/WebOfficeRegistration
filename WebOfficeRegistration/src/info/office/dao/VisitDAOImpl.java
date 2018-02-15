@@ -18,34 +18,47 @@ public class VisitDAOImpl implements VisitDAO {
 
 	@Override
 	public List<Visit> getVisits() {
-		
-		Session currentSession=sessionFactory.getCurrentSession();
-		
-		Query<Visit> theQuery=currentSession.createQuery("FROM Visit ORDER BY dateOfVisitPlanned desc", Visit.class);
-		
-		List<Visit> visits=theQuery.getResultList();
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Query<Visit> theQuery = currentSession.createQuery("FROM Visit ORDER BY dateOfVisitPlanned desc", Visit.class);
+
+		List<Visit> visits = theQuery.getResultList();
 
 		return visits;
 	}
 
 	@Override
 	public void save(Visit theVisit) {
-		
-		Session currentSession=sessionFactory.getCurrentSession();
-		
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
 		currentSession.saveOrUpdate(theVisit);
-		
+
 	}
 
 	@Override
 	public Visit getVisit(long theId) {
-	
-		Session currentSession=sessionFactory.getCurrentSession();
-		
-		Visit theVisit=currentSession.get(Visit.class,theId);
-		
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Visit theVisit = currentSession.get(Visit.class, theId);
+
 		return theVisit;
-		
+
+	}
+
+	@Override
+	public void deleteVisit(long theId) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Visit theVisit = new Visit();
+
+		theVisit = currentSession.get(Visit.class, theId);
+
+		currentSession.delete(theVisit);
+
 	}
 
 }

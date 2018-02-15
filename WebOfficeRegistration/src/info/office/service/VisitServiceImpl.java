@@ -38,4 +38,12 @@ public class VisitServiceImpl implements VisitService {
 		return visitDAO.getVisit(theId);
 	}
 
+	@Transactional
+	@Override
+	public void deleteVisit(long theId) {
+
+		visitDAO.deleteVisit(theId);
+
+	}
+
 }

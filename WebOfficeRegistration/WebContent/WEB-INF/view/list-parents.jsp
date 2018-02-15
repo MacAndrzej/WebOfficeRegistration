@@ -15,9 +15,20 @@
 			<h2>Panel administracyjny /rodzice/</h2>
 		</div>
 	</div>
+
 	<input type="button" value="Dodaj rodzica"
 		onclick="window.location.href='showFormForAddParent'; return false;"
 		class="add-button" />
+
+	<input type="button" value="Lista dzieci"
+		onclick="window.location.href='listChildren'; return false;"
+		class="add-button" />
+
+	<input type="button" value="Lista wizyt"
+		onclick="window.location.href='listVisits'; return false;"
+		class="add-button" />
+
+
 
 	<div id="container">
 		<div id="content">
@@ -63,7 +74,7 @@
 		</div>
 	</div>
 	<a href="${pageContext.request.contextPath}/admin/listChildren">Powrót
-		do listy dzieci</a> | 
+		do listy dzieci</a> |
 	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
 		do listy wizyt</a>
 

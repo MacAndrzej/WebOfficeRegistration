@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,10 +27,10 @@ public class Visit {
 	@Column(name = "id")
 	private Long id;
 
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date_of_visit_planned")
 	private LocalDate dateOfVisitPlanned;
-	
+
 	@Column(name = "time_of_visit_planned")
 	private LocalTime timeOfVisitPlanned;
 
@@ -40,21 +39,21 @@ public class Visit {
 
 	@Column(name = "date_of_visit_changed")
 	private Date dateOfVisitChanged;
-	
+
 	@Column(name = "time_of_visit_changed")
 	private Date timeOfVisitChanged;
-	
-	@Column(name="term_of_modification")
-	private Date termOfModification;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "term_of_modification")
+	private LocalDate termOfModification;
 
 	@NotNull
 	@Column(name = "absence")
 	private boolean absence;
 
-	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	@JoinColumn(name="child_id")
+	@JoinColumn(name = "child_id")
 	private Child child;
 
 	public Visit() {
@@ -125,17 +124,16 @@ public class Visit {
 		this.child = child;
 	}
 
-	public Date getTermOfModification() {
+	public LocalDate getTermOfModification() {
 		return termOfModification;
 	}
 
-	public void setTermOfModification(Date termOfModification) {
+	public void setTermOfModification(LocalDate termOfModification) {
 		this.termOfModification = termOfModification;
 	}
 
-
 	public Visit(LocalDate dateOfVisitPlanned, LocalTime timeOfVisitPlanned, boolean termOfVisitCancelled,
-			Date dateOfVisitChanged, Date timeOfVisitChanged, Date termOfModification, @NotNull boolean absence,
+			Date dateOfVisitChanged, Date timeOfVisitChanged, LocalDate termOfModification, @NotNull boolean absence,
 			Child child) {
 		this.dateOfVisitPlanned = dateOfVisitPlanned;
 		this.timeOfVisitPlanned = timeOfVisitPlanned;
@@ -154,5 +152,5 @@ public class Visit {
 				+ dateOfVisitChanged + ", timeOfVisitChanged=" + timeOfVisitChanged + ", termOfModification="
 				+ termOfModification + ", absence=" + absence + ", child=" + child + "]";
 	}
-	
+
 }

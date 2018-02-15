@@ -1,5 +1,5 @@
 
-var today = getElementByClassName('plan').value;
+
 var dd = today.getDate();
 var mm = today.getMonth()+1;
 
@@ -10,7 +10,6 @@ if(dd<10){
 if(mm<10){
     mm='0'+mm;
 } 
-console.log(today);
-var today = dd+'.'+mm+'.'+yyyy;
+var today = dd+'-'+mm+'-'+yyyy;
 
-document.write(today);
+document.getElementById("dateOfModification").innerHTML=today;
