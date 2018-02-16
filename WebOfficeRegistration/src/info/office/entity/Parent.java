@@ -36,18 +36,16 @@ public class Parent {
 	@Column(name = "name")
 	private String name;
 
-	// @Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer
-	// telefonu")
+	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
 	@NotNull(message = "proszę podać numer telefonu")
 	@Column(name = "telephone_number")
 	private String telephoneNumber;
 
-	@Pattern(regexp = "([a-z0-9A-Z]+\\.)*([a-z0-9A-Z]+)@{1}([a-z0-9A-Z]+\\.)+([a-z0-9A-Z]+)\\.*", message = "to nie jest poprawny format adresu email")
 	@Column(name = "email")
 	private String email;
 
 	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.DETACH,
-			CascadeType.MERGE, CascadeType.REFRESH,CascadeType.REMOVE })
+			CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE })
 	private List<Child> children;
 
 	// @NotNull()

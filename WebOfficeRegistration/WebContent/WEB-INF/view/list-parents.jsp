@@ -28,6 +28,10 @@
 		onclick="window.location.href='listVisits'; return false;"
 		class="add-button" />
 
+	<input type="button" value="Menu"
+		onclick="window.location.href='../home'; return false;"
+		class="add-button" />
+
 
 
 	<div id="container">

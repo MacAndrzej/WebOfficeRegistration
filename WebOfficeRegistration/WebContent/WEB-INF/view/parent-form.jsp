@@ -40,11 +40,11 @@
 					</tr>
 					<tr>
 						<td><label>Numer telefonu: </label></td>
-						<td><form:input path="telephoneNumber" /></td>
+						<td><form:input type="phone" path="telephoneNumber" /></td>
 					</tr>
 					<tr>
 						<td><label>Email: </label></td>
-						<td><form:input path="email" /></td>
+						<td><form:input type="email" path="email" /></td>
 					</tr>
 					<tr>
 						<td><label></label></td>
