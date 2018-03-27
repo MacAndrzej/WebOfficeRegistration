@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
 @Entity
 @Table(name = "parent")
 public class Parent {
@@ -41,6 +43,7 @@ public class Parent {
 	
 	@NotNull(message = "pole nie może być puste")
 	@Size(min = 3, message = "podaj poprawne dane")
+	@Email(message="podaj poprawny adres email")
 	@Column(name = "email")
 	private String email;
 

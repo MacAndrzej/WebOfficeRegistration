@@ -30,7 +30,7 @@
 
 	<a href="${pageContext.request.contextPath}/contact">Kontakt</a> |
 
-	<a href="register/showFormParent">Zarejestruj</a> |
+	<a href="${pageContext.request.contextPath}/showRegisterFormOne">Zarejestruj</a> |
 
 	<a href="${pageContext.request.contextPath}/loggedUser">Zaloguj</a> 
 
