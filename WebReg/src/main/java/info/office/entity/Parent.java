@@ -1,12 +1,10 @@
 package info.office.entity;
 
 import javax.persistence.Id;
+
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -35,8 +33,9 @@ public class Parent {
 	@Column(name = "name")
 	private String name;
 
-	@NotNull(message = "pole nie może być puste")
+	
 	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
+	@NotNull(message = "pole nie może być puste")
 	@Column(name = "telephone_number")
 	private String telephoneNumber;
 
@@ -51,17 +50,6 @@ public class Parent {
 	@OneToOne(mappedBy = "parent")
 	private Child child;
 
-	// @NotNull()
-	// @Column(name="alert")
-	// private boolean alert;
-	//
-	// public boolean isAlert() {
-	// return alert;
-	// }
-	//
-	// public void setAlert(boolean alert) {
-	// this.alert = alert;
-	// }
 
 	public Long getId() {
 		return id;

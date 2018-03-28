@@ -14,16 +14,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private DataSource securityDataSource;
-	
+
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println(encoder.toString());
 		return encoder;
@@ -32,12 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.jdbcAuthentication().dataSource(securityDataSource)
-		.passwordEncoder(passwordEncoder())
-		.usersByUsernameQuery("select username,password, enabled from users where username=?")
-		.authoritiesByUsernameQuery("select username, authority from authorities where username=?");
-		
+
+		auth.jdbcAuthentication().dataSource(securityDataSource).passwordEncoder(passwordEncoder())
+				.usersByUsernameQuery("select username,password, enabled from user where username=?")
+				.authoritiesByUsernameQuery("select username, authority from authorities where username=?");
+
 	}
 
 	@Override
@@ -45,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/loggedUser").hasRole("USER").antMatchers("/admin/**").hasRole("ADMIN")
 				.and().formLogin().loginPage("/login").loginProcessingUrl("/authenticateTheUser").permitAll()
-				.defaultSuccessUrl("/loggedUser", true).and().logout().permitAll().and().exceptionHandling().accessDeniedPage("/access-denied");
+				.defaultSuccessUrl("/loggedUser", true).and().logout().permitAll().and().exceptionHandling()
+				.accessDeniedPage("/access-denied");
 	}
 
 }
