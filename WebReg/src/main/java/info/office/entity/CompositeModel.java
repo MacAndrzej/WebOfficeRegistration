@@ -1,4 +1,4 @@
-package info.office.converter;
+package info.office.entity;
 
 import javax.validation.Valid;
 
@@ -40,6 +40,26 @@ public class CompositeModel {
 
 	public CompositeModel() {
 	}
+
+	public CompositeModel(Parent parent) {
+		this.parent = parent;
+	}
+
+	public CompositeModel(Child child) {
+		this.child = child;
+	}
+
+	public CompositeModel(Parent parent, Child child) {
+		this.parent = parent;
+		this.child = child;
+	}
+
+	public CompositeModel(Parent parent, Child child, String password) {
+		this.parent = parent;
+		this.child = child;
+		this.password = password;
+	}
+	
 	
 	
 

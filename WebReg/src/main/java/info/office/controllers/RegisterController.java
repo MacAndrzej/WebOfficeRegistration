@@ -2,6 +2,7 @@ package info.office.controllers;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import info.office.converter.CompositeModel;
 import info.office.entity.Child;
+import info.office.entity.CompositeModel;
 import info.office.entity.Parent;
-import info.office.entity.User;
 import info.office.service.ChildService;
 import info.office.service.ParentService;
-import info.office.service.UserService;
+
 
 @Controller
 public class RegisterController {
@@ -27,8 +27,8 @@ public class RegisterController {
 	@Autowired
 	ChildService childService;
 
-	@Autowired
-	UserService userService;
+//	@Autowired
+//	UserService userService;
 
 	@GetMapping("/showRegisterForm")
 	public String showFormForRegister(Model theModel) {
@@ -42,22 +42,22 @@ public class RegisterController {
 		return "register-form";
 	}
 
-	@PostMapping("/saveComposite")
-	public String saveParent(@Valid @ModelAttribute("composite") CompositeModel theComposite,
-			BindingResult theBindingResult) {
-
-		if (theBindingResult.hasErrors()) {
-			return "register-form";
-		}
-		
-		User user = new User();
-		user.setUserName(theComposite.getParent().getEmail());
-		user.setPassword(theComposite.getPassword());
-		parentService.saveParent(theComposite.getParent());
-		userService.saveUser(user);
-		childService.saveChild(theComposite.getChild());
-
-		return "register-confirmation";
-	}
+//	@PostMapping("/saveComposite")
+//	public String saveParent(@Valid @ModelAttribute("composite") CompositeModel theComposite,
+//			BindingResult theBindingResult) {
+//
+//		if (theBindingResult.hasErrors()) {
+//			return "register-form";
+//		}
+//		
+//		User user = new User();
+//		user.setUserName(theComposite.getParent().getEmail());
+//		user.setPassword(theComposite.getPassword());
+//		parentService.saveParent(theComposite.getParent());
+//		userService.saveUser(user);
+//		childService.saveChild(theComposite.getChild());
+//
+//		return "register-confirmation";
+//	}
 
 }

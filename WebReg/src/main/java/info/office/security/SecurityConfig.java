@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.jdbcAuthentication().dataSource(securityDataSource).passwordEncoder(passwordEncoder())
-				.usersByUsernameQuery("select username,password, enabled from user where username=?")
+				.usersByUsernameQuery("select username,password, enabled from users where username=?")
 				.authoritiesByUsernameQuery("select username, authority from authorities where username=?");
 
 	}
@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and().formLogin().loginPage("/login").loginProcessingUrl("/authenticateTheUser").permitAll()
 				.defaultSuccessUrl("/loggedUser", true).and().logout().permitAll().and().exceptionHandling()
 				.accessDeniedPage("/access-denied");
+		
+		
 	}
 
 }

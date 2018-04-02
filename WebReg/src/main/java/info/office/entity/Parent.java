@@ -2,6 +2,7 @@ package info.office.entity;
 
 import javax.persistence.Id;
 
+
 import javax.persistence.OneToOne;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+
 
 @Entity
 @Table(name = "parent")
@@ -33,23 +35,19 @@ public class Parent {
 	@Column(name = "name")
 	private String name;
 
-	
 	@Pattern(regexp = "[0-9]{7}", message = "to nie jest poprawny numer telefonu")
 	@NotNull(message = "pole nie może być puste")
 	@Column(name = "telephone_number")
 	private String telephoneNumber;
 
-	
 	@NotNull(message = "pole nie może być puste")
 	@Size(min = 3, message = "podaj poprawne dane")
-	@Email(message="podaj poprawny adres email")
+	@Email(message = "podaj poprawny adres email")
 	@Column(name = "email")
 	private String email;
 
-	
 	@OneToOne(mappedBy = "parent")
 	private Child child;
-
 
 	public Long getId() {
 		return id;
@@ -103,7 +101,22 @@ public class Parent {
 		this.child = child;
 	}
 
-	public Parent(String surname, String name, String telephoneNumber, String email, boolean alert) {
+	public Parent(Long id, String surname, String name, String telephoneNumber, String email, Child child) {
+		this.id = id;
+		this.surname = surname;
+		this.name = name;
+		this.telephoneNumber = telephoneNumber;
+		this.email = email;
+		this.child = child;
+	}
+
+	public Parent(String surname, String name, String telephoneNumber, String email, Child child) {
+		this(null, surname, name, telephoneNumber, email, child);
+	}
+	
+	
+
+	public Parent(String surname, String name, String telephoneNumber, String email) {
 		this.surname = surname;
 		this.name = name;
 		this.telephoneNumber = telephoneNumber;

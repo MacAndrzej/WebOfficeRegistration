@@ -107,16 +107,21 @@ public class Child {
 
 	}
 
-	public Child(String name, String surname, LocalDate dateOfBirth) {
-		this.name = name;
-		this.surname = surname;
-		this.dateOfBirth = dateOfBirth;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Child [id=" + id + ", surname=" + surname + ", name=" + name + ", dateOfBirth=" + dateOfBirth
 				+ ", parent=" + parent + ", visit=" + visit + "]";
 	}
+
+	public Child(Long id, String surname, String name, LocalDate dateOfBirth) {
+		this.id = id;
+		this.surname = surname;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	
 
 }

@@ -28,7 +28,7 @@ public class WebController {
 	
 	@GetMapping("/registerForm")
 	public String Register() {
-		return "registerForm";
+		return "register-form";
 	}
 	
 
