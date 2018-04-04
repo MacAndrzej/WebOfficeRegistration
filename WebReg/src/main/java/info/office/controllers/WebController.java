@@ -25,11 +25,7 @@ public class WebController {
 	public String ShowMainPage() {
 		return "main-menu";
 	}
-	
-	@GetMapping("/registerForm")
-	public String Register() {
-		return "register-form";
-	}
+
 	
 
 }

@@ -40,11 +40,5 @@ public class WebControllerTest {
 		mockMvc.perform(get("/home", "/")).andExpect(view().name("main-menu"));
 	}
 
-	@Test
-	public void testRegister() throws Exception {
-		WebController controller = new WebController();
-		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-		mockMvc.perform(get("/registerForm")).andExpect(view().name("register-form"));
-	}
 
 }

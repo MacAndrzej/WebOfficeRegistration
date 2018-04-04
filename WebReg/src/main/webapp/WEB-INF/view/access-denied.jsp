@@ -13,6 +13,6 @@
 </head>
 <body>
 	<h3>Przepraszamy ale nie posiadasz wystarczających uprawnień do wykonania tej operacji.</h3>
-	<a href="${pageContext.request.contextPath}/loggedUser">Powrót do menu</a>
+	<a href="${pageContext.request.contextPath}/home">Powrót do menu</a>
 </body>
 </html>

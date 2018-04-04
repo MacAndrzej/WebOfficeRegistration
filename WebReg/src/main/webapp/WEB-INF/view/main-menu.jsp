@@ -30,8 +30,6 @@
 
 	<a href="${pageContext.request.contextPath}/contact">Kontakt</a> |
 
-	<a href="${pageContext.request.contextPath}/showRegisterForm">Zarejestruj</a> |
-
 	<a href="${pageContext.request.contextPath}/loggedUser">Zaloguj</a> 
 
 	

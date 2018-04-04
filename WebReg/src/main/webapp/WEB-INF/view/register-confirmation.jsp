@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html; charset=utf-8"%>
+
 
 <!DOCTYPE html>
 
@@ -11,10 +11,13 @@
 
 </head>
 <body>
-	Potwierdzenie rejestracji użytkownika: ${parent.surname} ${parent.name }. <br>
-	Dane kontaktowe - numer telefonu: ${parent.telephoneNumber}, adres email: ${parent.email}.<br>
-	Zgoda na powiadomienia przez email o zaplanowanych wizytach: 
-	
-	
+
+	<h2>Proces rejestracji zakończony powodzeniem!</h2>
+	<hr>
+	<a href="${pageContext.request.contextPath}/login">Zaloguj się jako nowy użytkownik. Przejdz do formularza logowania.</a>
+
+
+
+
 </body>
 </html>

@@ -43,7 +43,7 @@
 
 	<a href="${pageContext.request.contextPath}/about">Zmień wizytę</a> |
 
-	<a href="${pageContext.request.contextPath}/contact">Ustawienia</a> 
+	<a href="${pageContext.request.contextPath}/userData">Moje dane</a> 
 	<security:authorize access="hasRole('ADMIN')">
 		| <a href="${pageContext.request.contextPath}/admin/listVisits">Administracja</a>
 
