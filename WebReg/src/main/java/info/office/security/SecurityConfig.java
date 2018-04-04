@@ -27,6 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println(encoder.toString());
 		return encoder;
 	}
+	
+//	@Bean
+//	public UserDetailsManager userDetailsManager() {
+//	JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+//	jdbcUserDetailsManager.setDataSource(securityDataSource);
+//	return jdbcUserDetailsManager;
+//	}
 
 	@Autowired
 	@Override
