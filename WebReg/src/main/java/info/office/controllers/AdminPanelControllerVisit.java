@@ -34,7 +34,6 @@ public class AdminPanelControllerVisit {
 	@GetMapping("/listVisits")
 	public String listVisits(Model theModel) {
 		theModel.addAttribute("visits", visitService.getVisits());
-		theModel.addAttribute(theModel);
 		return "list-visits";
 	}
 	

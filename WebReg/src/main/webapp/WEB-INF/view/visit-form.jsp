@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <%@page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,16 +14,9 @@
 }
 </style>
 <link type="text/css" rel="stylesheet" href="/css/add-parent-style.css">
-<!-- <link type="text/css" rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css"> --%>
 <script
 	src="${pageContext.request.contextPath }/resources/javascript/data-z-formularza-input.js"></script>
-<!-- <script -->
-<%-- 	src="${pageContext.request.contextPath }/resources/jquery/jquery.js"></script> --%>
-<!-- <script -->
-<%-- 	src="${pageContext.request.contextPath}/resources/jquery/jquery.datetimepicker.full.js"></script> --%>
 </head>
-
 <body>
 
 	<div id="wrapper">
@@ -49,11 +44,6 @@
 									path="timeOfVisitPlanned" class="errorInputValidation" /></td>
 						</tr>
 						<tr>
-							<td><label>Identyfikator dziecka: </label></td>
-							<td><form:input path="child" /> <form:errors
-									path="child" class="errorInputValidation" /></td>
-						</tr>
-						<tr>
 							<td><label></label></td>
 							<td><input type="submit" value="Zapisz" class="save" /></td>
 						</tr>
@@ -63,11 +53,10 @@
 			</form:form>
 		</div>
 	</div>
-
-	<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
-		do listy wizyt</a>
-	<!-- 	<script>$("#datetime").datetimepicker(); -->
-	<!-- 	</script> -->
+	<security:authorize access="hasRole('ADMIN')">
+		<a href="${pageContext.request.contextPath}/admin/listVisits">Powrót
+			do listy wizyt</a>
+	</security:authorize>
 
 
 

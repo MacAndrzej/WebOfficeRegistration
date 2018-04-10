@@ -24,9 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import info.office.entity.UserReg;
-
-
+import info.office.entity.Users;
 
 @Controller
 @RequestMapping("/register")
@@ -47,20 +45,20 @@ public class RegisterController {
 
 	@GetMapping("/showRegistrationForm")
 	public String showMyLoginPage(Model theModel) {
-		theModel.addAttribute("user", new UserReg());
+		theModel.addAttribute("user", new Users());
 		return "registration-form";
 	}
 
 	@PostMapping("/processRegistrationForm")
-	public String processRegistrationForm(@Valid @ModelAttribute("user") UserReg theUser, BindingResult theBindingResult,
-			Model theModel) {
+	public String processRegistrationForm(@Valid @ModelAttribute("user") Users theUser,
+			BindingResult theBindingResult, Model theModel) {
 		// form validation
 
 		String userName = theUser.getUserName();
 		logger.info("Processing registration form for: " + userName);
 
 		if (theBindingResult.hasErrors()) {
-			theModel.addAttribute("user", new UserReg());
+			theModel.addAttribute("user", new Users());
 			theModel.addAttribute("registrationError", "Nazwa użykownika/hasło nie mogą być puste.");
 			logger.warning("User name/password can not be empty.");
 			return "registration-form";
@@ -68,7 +66,7 @@ public class RegisterController {
 
 		boolean userExists = doesUserExist(userName);
 		if (userExists) {
-			theModel.addAttribute("crmUser", new UserReg());
+			theModel.addAttribute("user", new Users());
 			theModel.addAttribute("registrationError", "Użytkownik o podanym loginie juz istnieje.");
 
 			logger.warning("User name already exists.");
@@ -77,8 +75,6 @@ public class RegisterController {
 		}
 
 		String encodedPassword = passwordEncoder.encode(theUser.getPassword());
-
-		// encodedPassword = "{bcrypt}" + encodedPassword;
 
 		List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 
@@ -95,7 +91,6 @@ public class RegisterController {
 
 		logger.info("Checking if user exists: " + userName);
 
-		// check the database if the user already exists
 		boolean exists = userDetailsManager.userExists(userName);
 
 		logger.info("User: " + userName + ", exists: " + exists);

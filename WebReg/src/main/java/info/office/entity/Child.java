@@ -48,7 +48,7 @@ public class Child {
 	private LocalDate dateOfBirth;
 
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "parent_id")
 	private Parent parent;
 
@@ -107,8 +107,6 @@ public class Child {
 
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Child [id=" + id + ", surname=" + surname + ", name=" + name + ", dateOfBirth=" + dateOfBirth
@@ -121,7 +119,4 @@ public class Child {
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 	}
-	
-	
-
 }

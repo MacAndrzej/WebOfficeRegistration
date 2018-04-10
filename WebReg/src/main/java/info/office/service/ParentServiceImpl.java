@@ -22,6 +22,7 @@ public class ParentServiceImpl implements ParentService {
 	public List<Parent> getParents() {
 
 		List<Parent> parents = new ArrayList<>();
+		System.out.println("UWAGA !!!!"+parentDAO.findAll().toString());
 		for (Parent p : parentDAO.findAll()) {
 			parents.add(p);
 		}
@@ -49,5 +50,12 @@ public class ParentServiceImpl implements ParentService {
 		parentDAO.delete(theId);
 		
 	}
+
+	@Override
+	@Transactional
+	public Parent findByName(String username) {
+		return parentDAO.findByName(username);
+	}
+
 
 }

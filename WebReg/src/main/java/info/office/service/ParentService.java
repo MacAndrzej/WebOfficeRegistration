@@ -14,4 +14,6 @@ public interface ParentService {
 
 	void deleteParent(long theId);
 
+	Parent findByName(String username);
+	
 }

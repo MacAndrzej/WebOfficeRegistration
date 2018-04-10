@@ -28,7 +28,7 @@
 		class="add-button" />
 
 	<input type="button" value="Menu"
-		onclick="window.location.href='../loggedUser'; return false;"
+		onclick="window.location.href='../loggedUser/'; return false;"
 		class="add-button" />
 
 

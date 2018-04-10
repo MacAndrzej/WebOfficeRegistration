@@ -30,7 +30,7 @@
 		class="add-button" />
 
 	<input type="button" value="Menu"
-		onclick="window.location.href='../loggedUser'; return false;"
+		onclick="window.location.href='../loggedUser/'; return false;"
 		class="add-button" />
 
 
@@ -68,7 +68,7 @@
 						<td><a href="${updateLink}">Popraw</a> | <a
 							href="${deleteLink}"
 							onclick="return confirm('Czy napewno chcesz nieodwracalnie usunąć dane dziecka ?')">Usuń</a>
-							| <a href="${parentForChildLink}">Rodzic</a></td>
+							</td>
 					</tr>
 
 				</c:forEach>

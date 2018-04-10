@@ -15,7 +15,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Serwis dla użytkowników zalogowanych</h2>
+			<h2>Panel użytkownika</h2>
 		</div>
 	</div>
 	<hr>
@@ -34,19 +34,20 @@
 
 	<a href="${pageContext.request.contextPath}/certificates">Certyfikaty</a>|
 
-	<a href="${pageContext.request.contextPath}/contact">Kontakt</a> |
+	<a href="${pageContext.request.contextPath}/contact">Kontakt</a>
+	<security:authorize access="hasRole('USER')">
+		 |<a href="${pageContext.request.contextPath}/loggedUser/showVisits">Pokaż
+			wizyty</a> |
+	<a href="${pageContext.request.contextPath}/loggedUser/showFormForAddVisitByUser">Zaplanuj
+			wizytę</a>
+<%-- |	<a href="${pageContext.request.contextPath}/showFormForUpdateVisit">Zmień --%>
+<!-- 			wizytę</a>  -->
+		|<a href="${pageContext.request.contextPath}/loggedUser/showFormForCompleteUserData">Uzupełnij dane kontaktowe</a>
+		|<a href="${pageContext.request.contextPath}/loggedUser/userData">Moje dane</a>
+	</security:authorize>
 
-	<a href="${pageContext.request.contextPath}/about">Pokaż wizytę</a> |
-
-	<a href="${pageContext.request.contextPath}/about">Zaplanuj wizytę</a>
-	|
-
-	<a href="${pageContext.request.contextPath}/about">Zmień wizytę</a> |
-
-	<a href="${pageContext.request.contextPath}/userData">Moje dane</a> 
 	<security:authorize access="hasRole('ADMIN')">
 		| <a href="${pageContext.request.contextPath}/admin/listVisits">Administracja</a>
-
 	</security:authorize>
 </body>
 </html>

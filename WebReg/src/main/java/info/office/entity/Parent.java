@@ -1,11 +1,12 @@
 package info.office.entity;
 
 import javax.persistence.Id;
-
-
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -46,8 +47,12 @@ public class Parent {
 	@Column(name = "email")
 	private String email;
 
-	@OneToOne(mappedBy = "parent")
+	@OneToOne(mappedBy = "parent",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Child child;
+	
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name = "users_username")
+	private Users users;
 
 	public Long getId() {
 		return id;
@@ -99,6 +104,16 @@ public class Parent {
 
 	public void setChild(Child child) {
 		this.child = child;
+	}
+	
+	
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 	public Parent(Long id, String surname, String name, String telephoneNumber, String email, Child child) {

@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import info.office.dao.ParentDAO;
-import info.office.entity.CompositeModel;
+import info.office.entity.CompositeParentChild;
 import info.office.entity.Parent;
 import info.office.service.ParentService;
 
@@ -31,7 +31,7 @@ public class RegisterControllerTest {
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
 		mockMvc.perform(get("/showRegisterForm")).andExpect(status().isOk()).andExpect(view().name("register-form"))
-				.andExpect(model().attribute("composite", instanceOf(CompositeModel.class)));
+				.andExpect(model().attribute("composite", instanceOf(CompositeParentChild.class)));
 	}
 
 //	@Test

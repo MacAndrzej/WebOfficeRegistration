@@ -39,16 +39,21 @@ public class ChildServiceImpl implements ChildService {
 
 	@Override
 	@Transactional
-	public Child getChild(long theId) {
+	public Child getChild(Long theId) {
 		
 		return childDAO.findOne(theId);
 	}
 
 	@Override
 	@Transactional
-	public void deleteChild(long theId) {
+	public void deleteChild(Long theId) {
 		childDAO.delete(theId);
 		
+	}
+
+	@Override
+	public Child findByParent_id(Long theId) {
+		return childDAO.findByParent_id(theId);
 	}
 
 }

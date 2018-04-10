@@ -10,8 +10,10 @@ public interface ChildService {
 
 	void saveChild(Child theChild);
 
-	Child getChild(long theId);
+	Child getChild(Long theId);
 
-	void deleteChild(long theId);
+	void deleteChild(Long theId);
+	
+	Child findByParent_id(Long theId);
 
 }

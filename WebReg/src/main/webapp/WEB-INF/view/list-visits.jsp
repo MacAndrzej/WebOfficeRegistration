@@ -30,7 +30,7 @@
 		class="add-button" />
 
 	<input type="button" value="Menu"
-		onclick="window.location.href='../loggedUser'; return false;"
+		onclick="window.location.href='../loggedUser/'; return false;"
 		class="add-button" />
 
 	<div id="container">
@@ -60,7 +60,7 @@
 					</c:url>
 
 					<tr>
-						<td>${status.count }</td>
+						<td>${status.count }.</td>
 						<td>${tempVisit.child.getSurname() } &nbsp ${tempVisit.child.getName() }</td>
 						<td>${tempVisit.dateOfVisitPlanned}</td>
 						<td>${tempVisit.timeOfVisitPlanned}</td>

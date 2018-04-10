@@ -35,7 +35,6 @@ public class VisitServiceImpl implements VisitService {
 	public void save(Visit theVisit) {
 		
 		theVisit.setTermOfModification(LocalDate.now());
-		
 		visitDAO.save(theVisit);
 		
 		
@@ -54,5 +53,7 @@ public class VisitServiceImpl implements VisitService {
 		visitDAO.delete(theId);
 		
 	}
+
+
 
 }
