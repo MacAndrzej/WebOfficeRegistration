@@ -41,13 +41,13 @@ public class ParentServiceImpl implements ParentService {
 	@Transactional
 	public Parent getParent(long theId) {
 		
-		return parentDAO.findOne(theId);
+		return parentDAO.findById(theId).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void deleteParent(long theId) {
-		parentDAO.delete(theId);
+		parentDAO.deleteById(theId);
 		
 	}
 

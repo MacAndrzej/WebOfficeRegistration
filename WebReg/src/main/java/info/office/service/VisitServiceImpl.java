@@ -44,13 +44,13 @@ public class VisitServiceImpl implements VisitService {
 	@Transactional
 	public Visit getVisit(long theId) {
 		
-		return visitDAO.findOne(theId);
+		return visitDAO.findById(theId).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void deleteVisit(long theId) {
-		visitDAO.delete(theId);
+		visitDAO.deleteById(theId);
 		
 	}
 

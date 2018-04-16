@@ -2,6 +2,7 @@ package info.office.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -41,13 +42,13 @@ public class ChildServiceImpl implements ChildService {
 	@Transactional
 	public Child getChild(Long theId) {
 		
-		return childDAO.findOne(theId);
+		return childDAO.findById(theId).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void deleteChild(Long theId) {
-		childDAO.delete(theId);
+		childDAO.deleteById(theId);
 		
 	}
 
