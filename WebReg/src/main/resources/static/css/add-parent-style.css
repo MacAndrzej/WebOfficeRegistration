@@ -40,7 +40,7 @@ label {
 }
 
 tr:nth-child(even) {background: #FFFFFF}
-tr:nth-child(odd) {background: #FFFFFF}
+tr:nth-child(odd) {background: #AAAAAA}
 
 input {
 	width: 250px;

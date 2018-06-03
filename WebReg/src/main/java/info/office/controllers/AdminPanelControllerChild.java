@@ -2,6 +2,7 @@ package info.office.controllers;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ import info.office.service.ChildService;
 @RequestMapping("/admin")
 public class AdminPanelControllerChild {
 
+	final static Logger logger = Logger.getLogger(AdminPanelControllerChild.class);
+
 	@Autowired
 	private ChildService childService;
 
@@ -28,32 +31,40 @@ public class AdminPanelControllerChild {
 	}
 
 	public AdminPanelControllerChild() {
-
 	}
 
 	@GetMapping("/listChildren")
 	public String listChildren(Model theModel) {
+		logger.info("Entering to controller admin/listChildren");
 		theModel.addAttribute("children", childService.getChildren());
 		return "list-children";
 	}
 
 	@GetMapping("/showFormForAddChild")
 	public String showformForAddChild(Model theModel) {
+		logger.info("Entering to controller admin/showFormForAddChild");
 		theModel.addAttribute("children", new Child());
 		return "child-form";
 	}
 
 	@PostMapping("/saveChild")
 	public String saveChild(@Valid @ModelAttribute("children") Child theChild, BindingResult theBindingResult) {
+		logger.info("Entering to controller admin/saveChild");
+		logger.info("Child from form" + theChild);
 		if (theBindingResult.hasErrors()) {
+			theBindingResult.getAllErrors().forEach(objectError -> {
+				logger.info("Error at binding result" + objectError.toString());
+			});
 			return "child-form";
 		}
+		logger.info("Child before save proccess: " + theChild);
 		childService.saveChild(theChild);
 		return "redirect:/admin/listChildren";
 	}
 
 	@GetMapping("/showFormForUpdateChild")
 	public String updateChild(@RequestParam("childId") long theId, Model theModel) {
+		logger.info("Entering to controller admin/showFormForUpdateChild");
 		Child theChild = childService.getChild(theId);
 		theModel.addAttribute("children", theChild);
 		return "child-form";
@@ -61,6 +72,7 @@ public class AdminPanelControllerChild {
 
 	@GetMapping("/deleteChild")
 	public String deleteChild(@RequestParam("childId") long theId) {
+		logger.info("Entering to controller admin/deleteChild");
 		childService.deleteChild(theId);
 		return "redirect:/admin/listChildren";
 	}

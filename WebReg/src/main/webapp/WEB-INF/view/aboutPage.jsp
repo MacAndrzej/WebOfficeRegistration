@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +9,11 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h2>Aplikacja do rejestracji klientów poradni</h2>
+			<h2>Aplikacja do rejestracji klientÃ³w poradni</h2>
 		</div>
 	</div>
 	<H2>Misja i dlaczego to robimy</H2>
-	<a href="${pageContext.request.contextPath}/">Powrót do menu</a>
+	<a href="${pageContext.request.contextPath}/">PowrÃ³t do menu</a>
 
 </body>
 </html>

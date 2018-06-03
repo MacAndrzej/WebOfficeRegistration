@@ -28,14 +28,14 @@ public class ChildServiceImpl implements ChildService {
 			children.add(c);
 		}
 		
+		
 		return children;
 	}
 
 	@Override
 	@Transactional
-	public void saveChild(Child theChild) {
-		childDAO.save(theChild);
-		
+	public Child saveChild(Child theChild) {
+		return childDAO.save(theChild);
 	}
 
 	@Override

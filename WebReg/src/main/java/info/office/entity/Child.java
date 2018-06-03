@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 
@@ -42,6 +43,7 @@ public class Child {
 	@Column(name = "name")
 	private String name;
 
+	@Past
 	@NotNull(message = "pole nie może być puste")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date_of_birth")

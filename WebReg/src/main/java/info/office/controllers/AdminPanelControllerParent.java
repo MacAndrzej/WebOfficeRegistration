@@ -2,6 +2,7 @@ package info.office.controllers;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ import info.office.service.ParentService;
 @RequestMapping("/admin")
 public class AdminPanelControllerParent {
 
+	final static Logger logger = Logger.getLogger(AdminPanelControllerParent.class);
+
+	
 	@Autowired
 	private ParentService parentService;
 
@@ -34,18 +38,21 @@ public class AdminPanelControllerParent {
 
 	@GetMapping("/listParents")
 	public String listParents(Model theModel) {
+		logger.info("Entering to controller admin/listParents");
 		theModel.addAttribute("parents", parentService.getParents());
 		return "list-parents";
 	}
 
 	@GetMapping("/showFormForAddParent")
 	public String showFormForAddParent(Model theModel) {
+		logger.info("Entering to controller admin/showFormForAddParent");
 		theModel.addAttribute("parents", new Parent());
 		return "parent-form";
 	}
 
 	@PostMapping("/saveParent")
 	public String saveParent(@Valid @ModelAttribute("parents") Parent theParent, BindingResult theBindingResult) {
+		logger.info("Entering to controller admin/saveParent");
 		if (theBindingResult.hasErrors()) {
 			return "parent-form";
 		}
@@ -55,6 +62,7 @@ public class AdminPanelControllerParent {
 
 	@GetMapping("/showFormForUpdateParent")
 	public String updateParent(@RequestParam("parentId") long theId, Model theModel) {
+		logger.info("Entering to controller admin/showFormForUpdateParent");
 		Parent theParent = parentService.getParent(theId);
 		theModel.addAttribute("parents", theParent);
 		return "parent-form";
@@ -62,6 +70,7 @@ public class AdminPanelControllerParent {
 
 	@GetMapping("/deleteParent")
 	public String delete(@RequestParam("parentId") long theId) {
+		logger.info("Entering to controller admin/deleteParent");
 		parentService.deleteParent(theId);
 		return "redirect:/admin/listParents";
 	}

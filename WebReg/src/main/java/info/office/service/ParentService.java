@@ -8,7 +8,7 @@ public interface ParentService {
 
 	List<Parent> getParents();
 
-	void saveParent(Parent theParent);
+	Parent saveParent(Parent theParent);
 
 	Parent getParent(long theId);
 

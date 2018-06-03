@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 
@@ -28,7 +29,7 @@ public class Visit {
 	@Column(name = "id")
 	private Long id;
 
-	
+	@Future(message="podana data powinna odnosić się do przyszłości")
 	@NotNull(message="pole nie może być puste")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date_of_visit_planned")

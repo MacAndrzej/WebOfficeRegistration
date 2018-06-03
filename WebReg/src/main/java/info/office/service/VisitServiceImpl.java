@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 
 import info.office.dao.VisitDAO;
 import info.office.entity.Visit;
-
+/**
+ * 
+ * @Created by am on 3 cze 2018
+ *
+ */
 @Service
 public class VisitServiceImpl implements VisitService {
 
@@ -32,12 +36,9 @@ public class VisitServiceImpl implements VisitService {
 
 	@Override
 	@Transactional
-	public void save(Visit theVisit) {
-		
+	public Visit save(Visit theVisit) {
 		theVisit.setTermOfModification(LocalDate.now());
-		visitDAO.save(theVisit);
-		
-		
+		return visitDAO.save(theVisit);
 	}
 
 	@Override

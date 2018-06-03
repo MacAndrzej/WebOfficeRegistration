@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import info.office.dao.ParentDAO;
 import info.office.entity.Parent;
 
+/**
+ * 
+ * @Created by am on 2 cze 2018
+ *
+ */
 @Service
 public class ParentServiceImpl implements ParentService {
 
@@ -32,8 +37,8 @@ public class ParentServiceImpl implements ParentService {
 
 	@Override
 	@Transactional
-	public void saveParent(Parent theParent) {
-		parentDAO.save(theParent);
+	public Parent saveParent(Parent theParent) {
+		return parentDAO.save(theParent);
 		
 	}
 

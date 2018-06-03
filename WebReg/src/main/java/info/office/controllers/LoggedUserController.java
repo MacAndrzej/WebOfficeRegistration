@@ -2,9 +2,9 @@ package info.office.controllers;
 
 import java.security.Principal;
 
-
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +23,16 @@ import info.office.service.ChildService;
 import info.office.service.ParentService;
 import info.office.service.VisitService;
 
+/**
+ * 
+ * @Created by am on 2 cze 2018
+ *
+ */
 @Controller
 @RequestMapping("/loggedUser")
 public class LoggedUserController {
+
+	final static Logger logger = Logger.getLogger(LoggedUserController.class);
 
 	@Autowired
 	private VisitService visitService;
@@ -56,13 +63,20 @@ public class LoggedUserController {
 	@PostMapping("/saveVisit")
 	private String saveVisitByUser(@Valid @ModelAttribute("visits") Visit theVisit, BindingResult theBindingResult,
 			Principal principal) {
+		logger.info("Entering to LoggedUserController, saveVisitByUser method ");
+		logger.info(theVisit);
 		if (theBindingResult.hasErrors()) {
+			theBindingResult.getAllErrors().forEach(objectError -> {
+				logger.debug("Error after binding result: " + theBindingResult);
+			});
 			return "visit-form";
 		}
+		logger.info("Entering before principal");
 		String username = principal.getName();
+		logger.info("Entering after principal");
 		Parent theParent = parentService.findByName(username);
-		Child theChild=new Child();
-		theChild=childService.findByParent_id(theParent.getId());
+		Child theChild = new Child();
+		theChild = childService.findByParent_id(theParent.getId());
 		theVisit.setChild(theChild);
 		visitService.save(theVisit);
 		return "redirect:/loggedUser/showVisits";
@@ -71,7 +85,7 @@ public class LoggedUserController {
 	@GetMapping("/showFormForUpdateVisit")
 	private String updateVisitByUser(@RequestParam("visitId") long theId, Model theModel) {
 		Visit theVisit = visitService.getVisit(theId);
-		theModel.addAttribute("visits",theVisit);
+		theModel.addAttribute("visits", theVisit);
 		return "visit-form";
 	}
 
