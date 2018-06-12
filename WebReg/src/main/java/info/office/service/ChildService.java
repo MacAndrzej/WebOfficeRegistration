@@ -3,6 +3,7 @@ package info.office.service;
 import java.util.List;
 
 import info.office.entity.Child;
+import info.office.exception.IdNotFoundException;
 
 public interface ChildService {
 
@@ -10,7 +11,7 @@ public interface ChildService {
 
 	void saveChild(Child theChild);
 
-	Child getChild(Long theId);
+	Child getChild(Long theId) throws IdNotFoundException;
 
 	void deleteChild(Long theId);
 	

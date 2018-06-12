@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import info.office.entity.Parent;
+import info.office.exception.IdNotFoundException;
 import info.office.service.ParentService;
 
 @Controller
@@ -54,7 +55,7 @@ public class AdminPanelControllerParent {
 	}
 
 	@GetMapping("/showFormForUpdateParent")
-	public String updateParent(@RequestParam("parentId") long theId, Model theModel) {
+	public String updateParent(@RequestParam("parentId") long theId, Model theModel) throws IdNotFoundException {
 		Parent theParent = parentService.getParent(theId);
 		theModel.addAttribute("parents", theParent);
 		return "parent-form";

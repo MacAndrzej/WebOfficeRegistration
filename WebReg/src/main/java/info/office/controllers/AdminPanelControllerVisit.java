@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import info.office.entity.Visit;
+import info.office.exception.IdNotFoundException;
 import info.office.service.VisitService;
 
 @Controller
@@ -53,7 +54,7 @@ public class AdminPanelControllerVisit {
 	}
 	
 	@GetMapping("/showFormForUpdateVisit")
-	public String updateVisit(@RequestParam("visitId") long theId, Model theModel) {
+	public String updateVisit(@RequestParam("visitId") long theId, Model theModel) throws IdNotFoundException {
 		Visit theVisit = visitService.getVisit(theId);
 		theModel.addAttribute("visits", theVisit);
 		return "visit-form";

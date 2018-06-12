@@ -3,6 +3,7 @@ package info.office.service;
 import java.util.List;
 
 import info.office.entity.Visit;
+import info.office.exception.IdNotFoundException;
 
 public interface VisitService {
 
@@ -10,7 +11,7 @@ public interface VisitService {
 
 	void save(Visit theVisit);
 
-	Visit getVisit(long theId);
+	Visit getVisit(long theId) throws IdNotFoundException;
 
 	void deleteVisit(long theId);
 

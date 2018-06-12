@@ -1,7 +1,7 @@
 package info.office.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import info.office.dao.ParentDAO;
 import info.office.entity.Parent;
+import info.office.exception.IdNotFoundException;
 
 @Service
 public class ParentServiceImpl implements ParentService {
@@ -20,13 +21,7 @@ public class ParentServiceImpl implements ParentService {
 	@Override
 	@Transactional
 	public List<Parent> getParents() {
-
-		List<Parent> parents = new ArrayList<>();
-		System.out.println("UWAGA !!!!"+parentDAO.findAll().toString());
-		for (Parent p : parentDAO.findAll()) {
-			parents.add(p);
-		}
-
+		List<Parent> parents = parentDAO.findAll();
 		return parents;
 	}
 
@@ -34,14 +29,16 @@ public class ParentServiceImpl implements ParentService {
 	@Transactional
 	public void saveParent(Parent theParent) {
 		parentDAO.save(theParent);
-		
 	}
 
 	@Override
 	@Transactional
-	public Parent getParent(long theId) {
-		
-		return parentDAO.findById(theId).orElse(null);
+	public Parent getParent(long theId) throws IdNotFoundException {
+		Optional<Parent> parentOptional=parentDAO.findById(theId);
+		if(!parentOptional.isPresent()) {
+			throw new IdNotFoundException();
+		}
+		return parentOptional.get();
 	}
 
 	@Override

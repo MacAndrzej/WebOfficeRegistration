@@ -19,6 +19,7 @@ import info.office.entity.Child;
 import info.office.entity.CompositeParentChild;
 import info.office.entity.Parent;
 import info.office.entity.Visit;
+import info.office.exception.IdNotFoundException;
 import info.office.service.ChildService;
 import info.office.service.ParentService;
 import info.office.service.VisitService;
@@ -69,7 +70,7 @@ public class LoggedUserController {
 	}
 
 	@GetMapping("/showFormForUpdateVisit")
-	private String updateVisitByUser(@RequestParam("visitId") long theId, Model theModel) {
+	private String updateVisitByUser(@RequestParam("visitId") long theId, Model theModel) throws IdNotFoundException {
 		Visit theVisit = visitService.getVisit(theId);
 		theModel.addAttribute("visits",theVisit);
 		return "visit-form";
