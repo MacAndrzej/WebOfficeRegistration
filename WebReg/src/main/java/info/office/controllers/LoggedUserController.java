@@ -25,7 +25,7 @@ import info.office.service.VisitService;
 
 /**
  * 
- * @Created by am on 2 cze 2018
+ * @Created by am on 2 cze 2018 Controller to handling logged user options
  *
  */
 @Controller
@@ -72,16 +72,14 @@ public class LoggedUserController {
 			return "visit-form";
 		}
 		logger.info("Entering before principal");
-		String username = principal.getName();
+//		String username = principal.getName();
 		logger.info("Entering after principal");
-		Parent theParent = parentService.findByName(username);
-		Child theChild = new Child();
-		theChild = childService.findByParent_id(theParent.getId());
-		theVisit.setChild(theChild);
+		Parent theParent = parentService.findByName(principal.getName());
+		theVisit.setChild(childService.findByParent_id(theParent.getId()));
 		visitService.save(theVisit);
 		return "redirect:/loggedUser/showVisits";
 	}
-
+	
 	@GetMapping("/showFormForUpdateVisit")
 	private String updateVisitByUser(@RequestParam("visitId") long theId, Model theModel) {
 		Visit theVisit = visitService.getVisit(theId);

@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import info.office.entity.Parent;
 import info.office.service.ParentService;
 
+/**
+ * 
+ * @Created by am on 12 cze 2018 Controller to handling admin parent's options
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminPanelControllerParent {
