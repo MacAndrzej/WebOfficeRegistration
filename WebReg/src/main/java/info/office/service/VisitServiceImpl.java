@@ -24,11 +24,7 @@ public class VisitServiceImpl implements VisitService {
 	@Transactional
 	public List<Visit> getVisits() {
 
-		List<Visit> visit = new ArrayList<>();
-
-		for (Visit v : visitDAO.findAll()) {
-			visit.add(v);
-		}
+		List<Visit> visit = visitDAO.findAll();
 		return visit;
 	}
 
