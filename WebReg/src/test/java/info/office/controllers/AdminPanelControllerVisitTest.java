@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import info.office.dto.VisitEntityBuilderImpl;
 import info.office.entity.Visit;
+import info.office.exception.IdNotFoundException;
 import info.office.service.VisitService;
 
 public class AdminPanelControllerVisitTest {
@@ -42,7 +43,8 @@ public class AdminPanelControllerVisitTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(controller).setControllerAdvice(new ControllerExceptionHandler())
+				.build();
 	}
 
 	@Test
@@ -86,7 +88,7 @@ public class AdminPanelControllerVisitTest {
 	public void testSaveVisit_NoErrorsAfterValidation() throws Exception {
 		// for
 		Visit first = new VisitEntityBuilderImpl().id(1L).dateOfVisitPlanned(LocalDate.of(2024, Month.AUGUST, 26))
-				.timeOfVisitPlanned(LocalTime.of(10, 10)).build();		
+				.timeOfVisitPlanned(LocalTime.of(10, 10)).build();
 
 		// when
 		when(visitService.save(first)).thenReturn(first);
@@ -111,7 +113,7 @@ public class AdminPanelControllerVisitTest {
 	}
 
 	@Test
-	public void testUpdateVisit() throws Exception {
+	public void testUpdateVisit_EntryExists() throws Exception {
 		// for
 		Visit first = new VisitEntityBuilderImpl().id(1L).build();
 
@@ -121,6 +123,28 @@ public class AdminPanelControllerVisitTest {
 		// then
 		mockMvc.perform(get("/admin/showFormForUpdateVisit?visitId=1")).andExpect(status().isOk())
 				.andExpect(view().name("visit-form"));
+	}
+	
+	@Test
+	public void testUpdateVisit_EntryDoesNotExists() throws Exception {
+		
+		// when
+		when(visitService.getVisit(anyLong())).thenThrow(new IdNotFoundException());
+
+		// then
+		mockMvc.perform(get("/admin/showFormForUpdateVisit?visitId=1")).andExpect(status().isNotFound())
+				.andExpect(view().name("404error"));
+	}
+	
+	@Test
+	public void testUpdateVisit_NumberFormatException() throws Exception {
+		
+		// when
+		when(visitService.getVisit(anyLong())).thenThrow(new NumberFormatException());
+
+		// then
+		mockMvc.perform(get("/admin/showFormForUpdateVisit?visitId=1")).andExpect(status().isBadRequest())
+				.andExpect(view().name("400error"));
 	}
 
 	@Test

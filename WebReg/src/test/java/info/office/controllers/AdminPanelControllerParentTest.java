@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import info.office.dto.ParentEntityBuilderImpl;
 import info.office.entity.Parent;
+import info.office.exception.IdNotFoundException;
 import info.office.service.ParentService;
 
 public class AdminPanelControllerParentTest {
@@ -39,12 +40,13 @@ public class AdminPanelControllerParentTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(controller).setControllerAdvice(new ControllerExceptionHandler())
+				.build();
 	}
 
 	@Test
 	public void testListParents_ListIsNotEmpty() throws Exception {
-		// for
+		// given
 		Parent first = new ParentEntityBuilderImpl().id(1L).build();
 		Parent second = new ParentEntityBuilderImpl().id(2L).build();
 		List<Parent> parents = Arrays.asList(first, second);
@@ -60,7 +62,7 @@ public class AdminPanelControllerParentTest {
 
 	@Test
 	public void testListParents_ListIsEmpty() throws Exception {
-		// for
+		// given
 		List<Parent> parents = null;
 
 		// when
@@ -81,24 +83,22 @@ public class AdminPanelControllerParentTest {
 
 	@Test
 	public void testSaveParent_NoErrorsAfterValidation() throws Exception {
-		// for
+		// given
 		Parent first = new ParentEntityBuilderImpl().id(1L).email("cokolwiek@op.pl").name("rob").surname("roy")
 				.telephoneNumber("5555555").child(null).build();
-		
 
 		// when
 		when(parentService.saveParent(first)).thenReturn(first);
 
 		// then
-		mockMvc.perform(
-				post("/admin/saveParent").param("id", "1").param("email", "cokolwiek@op.pl").param("name", "rob")
-						.param("surname", "roy").param("telephoneNumber", "5555555"))
+		mockMvc.perform(post("/admin/saveParent").param("id", "1").param("email", "cokolwiek@op.pl")
+				.param("name", "rob").param("surname", "roy").param("telephoneNumber", "5555555"))
 				.andExpect(view().name("redirect:/admin/listParents")).andExpect(status().is3xxRedirection());
 	}
 
 	@Test
 	public void testSaveParent_ErrorsAfterValidation() throws Exception {
-		// for
+		// given
 		Parent first = new ParentEntityBuilderImpl().id(1L).build();
 
 		// when
@@ -109,8 +109,8 @@ public class AdminPanelControllerParentTest {
 	}
 
 	@Test
-	public void testUpdateParent() throws Exception {
-		// for
+	public void testUpdateParent_EntryExists() throws Exception {
+		// given
 		Parent first = new ParentEntityBuilderImpl().id(1L).build();
 
 		// when
@@ -122,8 +122,27 @@ public class AdminPanelControllerParentTest {
 	}
 
 	@Test
-	public void testDeleteParent() throws Exception {
+	public void testUpdateParent_EntryDoesNotExists() throws Exception {
 
+		// when
+		when(parentService.getParent(anyLong())).thenThrow(new IdNotFoundException());
+
+		// then
+		mockMvc.perform(get("/admin/showFormForUpdateParent?parentId=1")).andExpect(status().isNotFound())
+				.andExpect(view().name("404error"));
+	}
+
+	@Test
+	public void testUpdateParent_NumberFormatException() throws Exception {
+
+		// then
+		mockMvc.perform(get("/admin/showFormForUpdateParent?parentId=gg")).andExpect(status().isBadRequest())
+				.andExpect(view().name("400error"));
+	}
+
+	@Test
+	public void testDeleteParent() throws Exception {
+		// then
 		mockMvc.perform(get("/admin/deleteParent?parentId=1")).andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/admin/listParents"));
 

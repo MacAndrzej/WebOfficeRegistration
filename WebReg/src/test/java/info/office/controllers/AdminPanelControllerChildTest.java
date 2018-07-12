@@ -1,46 +1,32 @@
 package info.office.controllers;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.BindingResult;
 
 import info.office.dto.ChildEntityBuilderImpl;
-import info.office.dto.ParentEntityBuilderImpl;
-import info.office.dto.VisitEntityBuilderImpl;
 import info.office.entity.Child;
-import info.office.entity.Parent;
-import info.office.entity.Visit;
+import info.office.exception.IdNotFoundException;
 import info.office.service.ChildService;
 
 public class AdminPanelControllerChildTest {
@@ -56,7 +42,7 @@ public class AdminPanelControllerChildTest {
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(controller).setControllerAdvice(new ControllerExceptionHandler()).build();
 	}
 
 	@Test
@@ -86,6 +72,20 @@ public class AdminPanelControllerChildTest {
 		// then
 		mockMvc.perform(get("/admin/listChildren")).andExpect(view().name("list-children")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("children")).andExpect(model().size(1))
+				.andExpect(model().attribute("children", children));
+	}
+
+	@Test
+	public void testListChildren_ListIsNull() throws Exception {
+		// for
+		List<Child> children = null;
+
+		// when
+		when(childService.getChildren()).thenReturn(children);
+
+		// then
+		mockMvc.perform(get("/admin/listChildren")).andExpect(view().name("list-children")).andExpect(status().isOk())
+				.andExpect(model().attributeDoesNotExist("children")).andExpect(model().size(1))
 				.andExpect(model().attribute("children", children));
 	}
 
@@ -130,7 +130,7 @@ public class AdminPanelControllerChildTest {
 	}
 
 	@Test
-	public void testUpdateChild() throws Exception {
+	public void testUpdateChild_EntryExists() throws Exception {
 		// for
 		Child first = new ChildEntityBuilderImpl().id(1L).build();
 
@@ -140,6 +140,24 @@ public class AdminPanelControllerChildTest {
 		// then
 		mockMvc.perform(get("/admin/showFormForUpdateChild?childId=1")).andExpect(status().isOk())
 				.andExpect(view().name("child-form"));
+	}
+
+	@Test
+	public void testUpdateChild_EntryDoesNotExists() throws Exception {
+
+		// when
+		when(childService.getChild(5L)).thenThrow(IdNotFoundException.class);
+
+		// then
+		mockMvc.perform(get("/admin/showFormForUpdateChild?childId=1")).andExpect(status().isNotFound())
+				.andExpect(view().name("404error"));
+	}
+
+	@Test
+	public void testUpdateChild_NumberFormatException() throws Exception {
+
+		mockMvc.perform(get("/admin/showFormForUpdateChild?childId=ff")).andExpect(status().isBadRequest())
+				.andExpect(view().name("400error"));
 	}
 
 	@Test
